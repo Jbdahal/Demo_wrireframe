@@ -22,7 +22,7 @@ export function FinalCTA() {
               <h3 className="text-2xl font-bold">{finalCta.demo.title}</h3>
               <p className="mt-4 leading-relaxed text-white/85">{finalCta.demo.description}</p>
               <div className="mt-8">
-                <Button variant="secondary" className="bg-white text-navy hover:bg-white/90">
+                <Button variant="light">
                   {finalCta.demo.cta}
                 </Button>
               </div>

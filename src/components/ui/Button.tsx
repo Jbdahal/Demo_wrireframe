@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "light" | "outline" | "ghost";
 
 interface ButtonProps {
   href?: string;
@@ -17,6 +17,8 @@ const variants: Record<ButtonVariant, string> = {
     "bg-navy text-white hover:bg-navy-dark shadow-md hover:shadow-lg",
   secondary:
     "bg-teal text-white hover:bg-teal/90 shadow-md hover:shadow-lg",
+  light:
+    "bg-white text-navy hover:bg-white/90 shadow-md hover:shadow-lg",
   outline:
     "border-2 border-teal text-teal bg-transparent hover:bg-teal/10",
   ghost: "text-navy hover:bg-surface-alt",

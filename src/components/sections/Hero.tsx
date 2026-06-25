@@ -32,7 +32,7 @@ export function Hero() {
             </FadeIn>
             <FadeIn delay={0.3}>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Button variant="secondary" className="bg-white text-navy hover:bg-white/90">
+                <Button variant="light">
                   {hero.ctaProvider}
                 </Button>
                 <Button variant="outline" className="border-white/80 text-white hover:bg-white/10">
