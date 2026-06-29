@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 
+import { springSoft } from "@/lib/motion";
+
+export { springSoft };
 export const spring = { type: "spring" as const, stiffness: 260, damping: 24 };
-export const springSoft = { type: "spring" as const, stiffness: 180, damping: 22 };
 
 export function useFeatureInView(maxStep = 5, intervalMs = 1400) {
   const ref = useRef<HTMLDivElement>(null);
