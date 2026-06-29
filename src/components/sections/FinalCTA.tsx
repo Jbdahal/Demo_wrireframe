@@ -16,23 +16,25 @@ export function FinalCTA() {
           </FadeIn>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          <FadeIn>
-            <div className="rounded-2xl gradient-brand p-8 text-white md:p-10">
-              <h3 className="text-2xl font-bold">{finalCta.demo.title}</h3>
-              <p className="mt-4 leading-relaxed text-white/85">{finalCta.demo.description}</p>
-              <div className="mt-8">
-                <Button variant="light">
-                  {finalCta.demo.cta}
-                </Button>
+        <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
+          <FadeIn className="flex">
+            <div className="flex flex-1 flex-col rounded-2xl gradient-brand p-8 md:p-9">
+              <h3 className="text-xl font-bold text-white md:text-2xl">{finalCta.demo.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-white/85 md:text-base">
+                {finalCta.demo.description}
+              </p>
+              <div className="mt-6">
+                <Button variant="light">{finalCta.demo.cta}</Button>
               </div>
             </div>
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <div className="rounded-2xl border-2 border-teal/30 bg-white p-8 md:p-10">
-              <h3 className="text-2xl font-bold text-navy">{finalCta.trial.title}</h3>
-              <p className="mt-4 leading-relaxed text-muted">{finalCta.trial.description}</p>
-              <div className="mt-8">
+          <FadeIn delay={0.1} className="flex">
+            <div className="flex flex-1 flex-col rounded-2xl border-2 border-teal/30 bg-white p-8 md:p-9">
+              <h3 className="text-xl font-bold text-navy md:text-2xl">{finalCta.trial.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted md:text-base">
+                {finalCta.trial.description}
+              </p>
+              <div className="mt-6">
                 <Button variant="secondary">{finalCta.trial.cta}</Button>
               </div>
             </div>

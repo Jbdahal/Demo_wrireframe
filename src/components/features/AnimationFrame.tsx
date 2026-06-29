@@ -68,9 +68,13 @@ export function StepLabel({ children, color = "teal" }: { children: ReactNode; c
 }
 
 export function fadeStep(step: number, target: number) {
+  if (step < 0) {
+    return { opacity: 0, y: 16, scale: 0.96 };
+  }
+
   return {
     opacity: step >= target ? 1 : 0,
-    y: step >= target ? 0 : 12,
+    y: step >= target ? 0 : 16,
     scale: step >= target ? 1 : 0.96,
   };
 }

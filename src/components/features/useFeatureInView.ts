@@ -1,29 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
+import { useFeatureInViewContext } from "./featureInView";
 
-import { springSoft } from "@/lib/motion";
-
-export { springSoft };
+export { springSoft } from "@/lib/motion";
 export const spring = { type: "spring" as const, stiffness: 260, damping: 24 };
 
-export function useFeatureInView(maxStep = 5, intervalMs = 1400) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.35, once: false });
+export function useFeatureInView(maxStep = 5, stepDelayMs = 650) {
+  const isInView = useFeatureInViewContext();
   const reducedMotion = useReducedMotion();
-  const [step, setStep] = useState(0);
-  const displayStep = reducedMotion ? maxStep : isInView ? step : 0;
+  const [step, setStep] = useState(-1);
 
   useEffect(() => {
-    if (reducedMotion || !isInView) return;
+    if (reducedMotion) {
+      setStep(maxStep);
+      return;
+    }
 
-    const interval = setInterval(() => {
-      setStep((prev) => (prev >= maxStep ? 0 : prev + 1));
-    }, intervalMs);
+    if (!isInView) return;
 
-    return () => clearInterval(interval);
-  }, [isInView, reducedMotion, maxStep, intervalMs]);
+    setStep(0);
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
 
-  return { ref, step: displayStep, isInView, reducedMotion: !!reducedMotion };
+    for (let i = 1; i <= maxStep; i++) {
+      timeouts.push(setTimeout(() => setStep(i), stepDelayMs * i));
+    }
+
+    return () => timeouts.forEach(clearTimeout);
+  }, [isInView, reducedMotion, maxStep, stepDelayMs]);
+
+  return {
+    step: reducedMotion ? maxStep : step,
+    isInView,
+    reducedMotion: !!reducedMotion,
+  };
 }

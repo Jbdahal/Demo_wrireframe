@@ -8,46 +8,40 @@ import { spring, springSoft, useFeatureInView } from "../useFeatureInView";
 const checklist = ["Notes", "Checklist", "Forms"];
 
 export function MobileAppAnimation() {
-  const { ref, step } = useFeatureInView(5, 1500);
+  const { step } = useFeatureInView(5);
 
   return (
     <div
-      ref={ref}
       aria-label="Mobile app for support workers"
-      className="flex h-full min-h-[260px] items-center justify-center p-4 md:min-h-[320px]"
+      className="flex h-full min-h-[280px] items-center justify-center p-4"
     >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={fadeStep(step, 0)}
         transition={springSoft}
-        className="relative w-full max-w-[200px] rounded-[2rem] border-[6px] border-navy bg-white p-4 shadow-2xl shadow-navy/20 sm:max-w-[220px]"
+        className="relative w-[148px] rounded-[2.25rem] border-[5px] border-navy bg-white px-3 pb-4 pt-2 shadow-2xl shadow-navy/25"
       >
-        <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-navy/15" />
-        <div className="space-y-3">
+        <div className="mx-auto mb-3 h-5 w-[72px] rounded-full bg-navy" />
+        <div className="space-y-2.5">
           <motion.div
             animate={fadeStep(step, 0)}
             transition={springSoft}
-            className="flex items-center gap-2 rounded-xl bg-blue/10 p-3"
+            className="flex items-center gap-2 rounded-lg bg-blue/10 p-2.5"
           >
-            <Bell className="h-4 w-4 shrink-0 text-blue" />
-            <span className="text-xs font-semibold text-navy">New shift available</span>
+            <Bell className="h-3.5 w-3.5 shrink-0 text-blue" />
+            <span className="text-[10px] font-semibold leading-tight text-navy">New shift available</span>
           </motion.div>
 
           <motion.button
             animate={fadeStep(step, 1)}
             transition={spring}
-            className="w-full rounded-xl bg-teal py-2.5 text-xs font-bold text-white shadow-md"
+            className="w-full rounded-lg bg-teal py-2 text-[10px] font-bold text-white shadow-md"
           >
             Accept shift
           </motion.button>
 
-          <motion.div
-            animate={fadeStep(step, 2)}
-            transition={springSoft}
-            className="flex justify-center py-2"
-          >
+          <motion.div animate={fadeStep(step, 2)} transition={springSoft} className="flex justify-center py-1">
             <div className="relative">
-              <MapPin className="h-8 w-8 text-teal" />
+              <MapPin className="h-6 w-6 text-teal" />
               {step >= 2 && (
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0.6 }}
@@ -59,15 +53,15 @@ export function MobileAppAnimation() {
             </div>
           </motion.div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {checklist.map((item, i) => (
               <motion.div
                 key={item}
                 animate={fadeStep(step, 3 + i)}
                 transition={{ ...springSoft, delay: i * 0.05 }}
-                className="flex items-center gap-2 text-xs font-medium text-navy"
+                className="flex items-center gap-1.5 text-[10px] font-medium text-navy"
               >
-                <Check className="h-3.5 w-3.5 text-teal" strokeWidth={3} />
+                <Check className="h-3 w-3 text-teal" strokeWidth={3} />
                 {item}
               </motion.div>
             ))}
@@ -76,12 +70,13 @@ export function MobileAppAnimation() {
           <motion.div
             animate={fadeStep(step, 5)}
             transition={springSoft}
-            className="flex items-center gap-2 rounded-lg bg-purple/10 p-2.5"
+            className="flex items-center gap-1.5 rounded-lg bg-purple/10 p-2"
           >
-            <Receipt className="h-4 w-4 text-purple" />
-            <span className="text-xs font-medium text-navy">Expense submitted</span>
+            <Receipt className="h-3.5 w-3.5 text-purple" />
+            <span className="text-[10px] font-medium text-navy">Expense submitted</span>
           </motion.div>
         </div>
+        <div className="mx-auto mt-3 h-1 w-10 rounded-full bg-navy/15" />
       </motion.div>
     </div>
   );

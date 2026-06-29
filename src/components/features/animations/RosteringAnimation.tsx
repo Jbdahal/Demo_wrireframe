@@ -2,12 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, User } from "lucide-react";
-import {
-  AnimationFrame,
-  GlassCard,
-  StepLabel,
-  fadeStep,
-} from "../AnimationFrame";
+import { AnimationFrame, GlassCard, StepLabel, fadeStep } from "../AnimationFrame";
 import { spring, springSoft, useFeatureInView } from "../useFeatureInView";
 
 const workers = [
@@ -19,10 +14,10 @@ const workers = [
 const days = ["M", "T", "W", "T", "F"];
 
 export function RosteringAnimation() {
-  const { ref, step } = useFeatureInView(5, 1500);
+  const { step } = useFeatureInView(5);
 
   return (
-    <AnimationFrame ref={ref} label="Smart rostering: matching staff availability to participant requirements">
+    <AnimationFrame label="Smart rostering: matching staff availability to participant requirements">
       <div className="flex h-full flex-col gap-4">
         <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
           <GlassCard>
@@ -59,8 +54,8 @@ export function RosteringAnimation() {
             <StepLabel color="blue">Client requirements</StepLabel>
             <div className="mt-4 space-y-3">
               {[
-                { name: "Participant 1", detail: "Mon 9am · SIL", match: 1 },
-                { name: "Participant 2", detail: "Wed 2pm · Community", match: 2 },
+                { name: "Participant 1", detail: "Mon 9am · SIL" },
+                { name: "Participant 2", detail: "Wed 2pm · Community" },
               ].map((p, i) => (
                 <motion.div
                   key={p.name}
@@ -76,11 +71,7 @@ export function RosteringAnimation() {
           </GlassCard>
         </div>
 
-        <motion.div
-          animate={fadeStep(step, 2)}
-          transition={springSoft}
-          className="flex justify-center"
-        >
+        <motion.div animate={fadeStep(step, 2)} transition={springSoft} className="flex justify-center">
           <motion.div
             animate={step >= 2 ? { scale: [1, 1.06, 1] } : {}}
             transition={{ duration: 1.2, repeat: step >= 2 ? Infinity : 0 }}

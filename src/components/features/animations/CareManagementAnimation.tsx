@@ -8,10 +8,10 @@ import { spring, springSoft, useFeatureInView } from "../useFeatureInView";
 const planItems = ["Care plan", "Goals", "Preferences"];
 
 export function CareManagementAnimation() {
-  const { ref, step } = useFeatureInView(5, 1500);
+  const { step } = useFeatureInView(5);
 
   return (
-    <AnimationFrame ref={ref} label="Care management and participant profiles">
+    <AnimationFrame label="Care management and participant profiles">
       <div className="flex h-full flex-col gap-4">
         <motion.div animate={fadeStep(step, 0)} transition={springSoft}>
           <GlassCard className="flex items-center gap-4">
@@ -61,11 +61,7 @@ export function CareManagementAnimation() {
           <p className="text-sm font-semibold text-white">Mon 9am shift — linked</p>
         </motion.div>
 
-        <motion.div
-          animate={fadeStep(step, 5)}
-          transition={springSoft}
-          className="text-center"
-        >
+        <motion.div animate={fadeStep(step, 5)} transition={springSoft} className="text-center">
           <span className="inline-block rounded-full bg-purple/15 px-4 py-1.5 text-xs font-bold text-purple">
             Preferred worker assigned
           </span>

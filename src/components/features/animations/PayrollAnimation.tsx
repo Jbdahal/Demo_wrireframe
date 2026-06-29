@@ -6,19 +6,15 @@ import { AnimationFrame, GlassCard, fadeStep } from "../AnimationFrame";
 import { spring, springSoft, useFeatureInView } from "../useFeatureInView";
 
 export function PayrollAnimation() {
-  const { ref, step } = useFeatureInView(5, 1500);
+  const { step } = useFeatureInView(5);
 
   return (
-    <AnimationFrame ref={ref} label="Payroll, timesheets and NDIS billing flow">
+    <AnimationFrame label="Payroll, timesheets and NDIS billing flow">
       <div className="flex h-full flex-col gap-4">
         <GlassCard className="relative overflow-hidden">
           <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted">GPS clock-in</p>
           <div className="relative flex h-28 items-center justify-center rounded-xl bg-gradient-to-br from-surface-alt to-white">
-            <motion.div
-              animate={fadeStep(step, 0)}
-              transition={springSoft}
-              className="relative"
-            >
+            <motion.div animate={fadeStep(step, 0)} transition={springSoft} className="relative">
               <MapPin className="h-10 w-10 text-teal" />
               {step >= 1 && (
                 <motion.div
@@ -53,11 +49,7 @@ export function PayrollAnimation() {
           </GlassCard>
         </motion.div>
 
-        <motion.p
-          animate={fadeStep(step, 5)}
-          transition={spring}
-          className="text-center text-sm font-bold text-teal"
-        >
+        <motion.p animate={fadeStep(step, 5)} transition={spring} className="text-center text-sm font-bold text-teal">
           Synced to Xero →
         </motion.p>
       </div>

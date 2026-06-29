@@ -13,10 +13,10 @@ const staff = [
 ];
 
 export function WorkforceAnimation() {
-  const { ref, step } = useFeatureInView(5, 1500);
+  const { step } = useFeatureInView(5);
 
   return (
-    <AnimationFrame ref={ref} label="Workforce management and staff visibility">
+    <AnimationFrame label="Workforce management and staff visibility">
       <div className="flex h-full flex-col gap-4">
         <div className="flex justify-center gap-3">
           {staff.map((s, i) => (
@@ -73,7 +73,7 @@ export function WorkforceAnimation() {
           className="flex items-center justify-center gap-2 rounded-xl bg-teal/10 py-3"
         >
           <Check className="h-5 w-5 text-teal" />
-          <span className="text-sm font-semibold text-navy">Supervisor approved swap</span>
+          <span className="text-sm font-semibold text-navy">Leave request approved</span>
         </motion.div>
       </div>
     </AnimationFrame>

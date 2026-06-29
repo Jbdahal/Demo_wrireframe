@@ -8,13 +8,18 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-12 flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <Image
-              src="/brand/logo.png"
-              alt="Pravaro"
-              width={160}
-              height={160}
-              className="mb-4 h-24 w-auto brightness-0 invert"
-            />
+            <Link href="#hero" className="mb-4 flex items-center gap-2">
+              <Image
+                src="/brand/logo-mark.png"
+                alt="Pravaro"
+                width={36}
+                height={36}
+                className="h-9 w-9 object-contain brightness-0 invert"
+              />
+              <span className="text-xl font-bold lowercase tracking-tight text-white">
+                pravaro
+              </span>
+            </Link>
             <p className="text-sm text-white/70">{footer.tagline}</p>
           </div>
           <p className="text-xs font-semibold uppercase tracking-widest">

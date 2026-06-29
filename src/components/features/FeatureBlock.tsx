@@ -1,8 +1,10 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState, type ReactNode } from "react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FeatureInViewProvider } from "@/components/features/featureInView";
+import { springGentle } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 interface FeatureBlockProps {
@@ -15,6 +17,7 @@ interface FeatureBlockProps {
 }
 
 const VISIBLE_COUNT = 4;
+const viewport = { once: true, amount: 0.15 };
 
 export function FeatureBlock({
   number,
@@ -25,16 +28,33 @@ export function FeatureBlock({
   reversed = false,
 }: FeatureBlockProps) {
   const [expanded, setExpanded] = useState(false);
+  const reduced = useReducedMotion();
   const visible = expanded ? subFeatures : subFeatures.slice(0, VISIBLE_COUNT);
   const hasMore = subFeatures.length > VISIBLE_COUNT;
 
+  const motionProps = reduced
+    ? {}
+    : {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport,
+      };
+
   return (
-    <FadeIn>
+    <FeatureInViewProvider>
       <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-        <div className={cn("min-h-[280px] lg:min-h-[360px]", reversed ? "lg:order-2" : "lg:order-1")}>
+        <motion.div
+          {...motionProps}
+          transition={{ ...springGentle, delay: reversed ? 0.12 : 0 }}
+          className={cn("min-h-[280px] lg:min-h-[360px]", reversed ? "lg:order-2" : "lg:order-1")}
+        >
           {animation}
-        </div>
-        <div className={cn("flex flex-col justify-center", reversed ? "lg:order-1" : "lg:order-2")}>
+        </motion.div>
+        <motion.div
+          {...motionProps}
+          transition={{ ...springGentle, delay: reversed ? 0 : 0.12 }}
+          className={cn("flex flex-col justify-center", reversed ? "lg:order-1" : "lg:order-2")}
+        >
           <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal to-blue text-sm font-bold text-white shadow-md">
             {number}
           </span>
@@ -58,8 +78,8 @@ export function FeatureBlock({
               <ChevronDown className={cn("h-4 w-4 transition-transform", expanded && "rotate-180")} />
             </button>
           )}
-        </div>
+        </motion.div>
       </div>
-    </FadeIn>
+    </FeatureInViewProvider>
   );
 }

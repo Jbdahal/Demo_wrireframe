@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { OurStory } from "@/components/sections/OurStory";
-import { Challenge } from "@/components/sections/Challenge";
+import { ChallengeFlow } from "@/components/sections/ChallengeFlow";
 import { TwoSides } from "@/components/sections/TwoSides";
 import { ProvidersSection } from "@/components/sections/ProvidersSection";
 import { AgenciesSection } from "@/components/sections/AgenciesSection";
@@ -19,7 +19,7 @@ export default function Home() {
       <main>
         <Hero />
         <OurStory />
-        <Challenge />
+        <ChallengeFlow />
         <TwoSides />
         <ProvidersSection />
         <AgenciesSection />

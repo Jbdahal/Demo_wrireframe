@@ -219,7 +219,6 @@ export const features = [
       "Export to payroll / Xero integration",
       "Automated invoice generation",
       "Bulk invoicing",
-      "NDIS claim file generation",
       "NDIS price guide integration",
       "Mileage and expense tracking",
     ],
@@ -363,12 +362,12 @@ export const finalCta = {
   demo: {
     title: "Book a Demo",
     description:
-      "See how Pravaro can help your organisation reduce administration, strengthen compliance, improve workforce coordination, and maintain continuity of support.",
+      "See how Pravaro reduces administration and strengthens workforce coordination.",
     cta: "Book a Demo",
   },
   trial: {
     title: "Start Your Free Trial",
-    description: "Experience a simpler, smarter way to manage NDIS operations.",
+    description: "Try Pravaro free and experience a simpler way to manage NDIS operations.",
     cta: "Start Free Trial",
   },
   pricing: {
