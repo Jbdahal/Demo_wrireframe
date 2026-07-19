@@ -50,3 +50,6 @@ next-env.d.ts
 
 # internal reference docs (brand guidelines, design briefs) — not for public repo
 /docs/reference/*.pdf
+
+# docker image exports — deliverables, not source
+*.tar.gz
