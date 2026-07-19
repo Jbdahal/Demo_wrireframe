@@ -13,17 +13,17 @@ export function useFeatureInView(maxStep = 5, stepDelayMs = 650) {
   const [step, setStep] = useState(-1);
 
   useEffect(() => {
-    if (reducedMotion) {
-      setStep(maxStep);
-      return;
-    }
+    // Reduced-motion case needs no effect: the returned `step` below is
+    // already pinned to `maxStep` via the ternary, independent of this state.
+    if (reducedMotion) return;
 
     if (!isInView) return;
 
-    setStep(0);
+    // Every step, including the first, fires via setTimeout so state is
+    // always set from a callback rather than synchronously in the effect body.
     const timeouts: ReturnType<typeof setTimeout>[] = [];
 
-    for (let i = 1; i <= maxStep; i++) {
+    for (let i = 0; i <= maxStep; i++) {
       timeouts.push(setTimeout(() => setStep(i), stepDelayMs * i));
     }
 

@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# loose reference material dropped in the repo root while iterating
+# (design docs, ad-hoc screenshots) — real assets belong in /public
+/*.pdf
+/Screenshot *.png
+/Screenshot *.PNG
+/IMG_*.PNG
+/IMG_*.png
+
+# internal reference docs (brand guidelines, design briefs) — not for public repo
+/docs/reference/*.pdf

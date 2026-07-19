@@ -24,7 +24,7 @@ export function WorkforceAnimation() {
               key={s.initial}
               animate={fadeStep(step, 0)}
               transition={{ ...springSoft, delay: i * 0.06 }}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-blue/20 to-teal/20 text-sm font-bold text-blue shadow-sm"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-strong/20 to-primary/20 text-sm font-bold text-strong shadow-sm"
             >
               {s.initial}
             </motion.div>
@@ -32,14 +32,14 @@ export function WorkforceAnimation() {
         </div>
 
         <GlassCard>
-          <StepLabel color="teal">Availability</StepLabel>
+          <StepLabel color="primary">Availability</StepLabel>
           <div className="mt-4 space-y-3">
             {staff.map((s, i) => (
               <div key={s.initial} className="flex items-center gap-3">
                 <span className="w-4 text-xs font-bold text-muted">{s.initial}</span>
-                <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-surface-alt">
+                <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-soft-alt">
                   <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-teal to-blue"
+                    className="h-full rounded-full bg-gradient-to-r from-primary to-strong"
                     initial={{ width: 0 }}
                     animate={{ width: step >= 1 ? `${s.pct}%` : 0 }}
                     transition={{ ...springSoft, delay: i * 0.08 }}
@@ -58,9 +58,9 @@ export function WorkforceAnimation() {
 
         <GlassCard>
           <p className="mb-2 text-xs font-semibold text-muted">WH&S hours</p>
-          <div className="h-3 overflow-hidden rounded-full bg-surface-alt">
+          <div className="h-3 overflow-hidden rounded-full bg-soft-alt">
             <motion.div
-              className="h-full rounded-full bg-blue"
+              className="h-full rounded-full bg-strong"
               animate={{ width: step >= 3 ? "72%" : "0%" }}
               transition={springSoft}
             />
@@ -70,10 +70,10 @@ export function WorkforceAnimation() {
         <motion.div
           animate={fadeStep(step, 4)}
           transition={springSoft}
-          className="flex items-center justify-center gap-2 rounded-xl bg-teal/10 py-3"
+          className="flex items-center justify-center gap-2 rounded-xl bg-primary/10 py-3"
         >
-          <Check className="h-5 w-5 text-teal" />
-          <span className="text-sm font-semibold text-navy">Leave request approved</span>
+          <Check className="h-5 w-5 text-primary" />
+          <span className="text-sm font-semibold text-darkest">Leave request approved</span>
         </motion.div>
       </div>
     </AnimationFrame>

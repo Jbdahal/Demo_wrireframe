@@ -1,35 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --color-navy: #0b1d3a;
-  --color-navy-dark: #061224;
-  --color-blue: #2563eb;
-  --color-teal: #14b8a6;
-  --color-purple: #7c3aed;
-  --color-cyan: #06b6d4;
-  --color-surface: #f8fafc;
-  --color-surface-alt: #f1f5f9;
+  --color-soft: #f6f1ff;
+  --color-soft-alt: #ede6fa;
+  --color-light: #be9fff;
+  --color-primary: #9178c6;
+  --color-strong: #5a37a4;
+  --color-darkest: #422d6f;
+  --color-ink: #2d2d2d;
   --color-white: #ffffff;
-  --color-muted: #64748b;
-  --gradient-brand: linear-gradient(135deg, #0b1d3a 0%, #2563eb 50%, #14b8a6 100%);
-  --gradient-flow: linear-gradient(90deg, #14b8a6, #2563eb, #7c3aed);
+  --color-muted: #6b6b6b;
+  --gradient-brand: linear-gradient(135deg, #422d6f 0%, #5a37a4 50%, #9178c6 100%);
+  --gradient-flow: linear-gradient(90deg, #be9fff, #9178c6, #5a37a4);
   --background: var(--color-white);
-  --foreground: var(--color-navy);
+  --foreground: var(--color-darkest);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy: var(--color-navy);
-  --color-navy-dark: var(--color-navy-dark);
-  --color-blue: var(--color-blue);
-  --color-teal: var(--color-teal);
-  --color-purple: var(--color-purple);
-  --color-cyan: var(--color-cyan);
-  --color-surface: var(--color-surface);
-  --color-surface-alt: var(--color-surface-alt);
+  --color-soft: var(--color-soft);
+  --color-soft-alt: var(--color-soft-alt);
+  --color-light: var(--color-light);
+  --color-primary: var(--color-primary);
+  --color-strong: var(--color-strong);
+  --color-darkest: var(--color-darkest);
+  --color-ink: var(--color-ink);
   --color-muted: var(--color-muted);
   --font-sans: var(--font-jakarta);
+  --font-body: var(--font-source-sans);
 }
 
 html {
@@ -60,7 +59,7 @@ body {
 }
 
 .wave-divider {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cpath fill='%23f8fafc' d='M0 24C240 48 480 0 720 24s480 24 720 0 240-24 480 0V48H0V24z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cpath fill='%23f6f1ff' d='M0 24C240 48 480 0 720 24s480 24 720 0 240-24 480 0V48H0V24z'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   height: 48px;
 }

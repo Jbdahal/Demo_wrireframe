@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -8,16 +10,22 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://pravaro.com.au"),
-  title: "Pravaro — The Backbone of Continuous NDIS Support",
+  title: "Pravaro — Suite for healthcare heroes.",
   description:
-    "Pravaro is the unified operating platform connecting NDIS providers, support workers, and staffing agencies — bringing rostering, compliance, workforce coordination, and care management together in one connected ecosystem.",
+    "Pravaro is a software suite built for healthcare. It brings together the tools care teams, schedulers, agencies, and administrators need to run day-to-day operations without the usual admin headaches.",
   openGraph: {
-    title: "Pravaro — The Backbone of Continuous NDIS Support",
+    title: "Pravaro — Suite for healthcare heroes.",
     description:
-      "The unified operating platform for NDIS providers, support workers, and staffing agencies.",
-    images: ["/brand/logo.png"],
+      "A growing suite of healthcare software, starting with the Roster & Scheduling platform, live today.",
+    images: ["/brand/logo-wordmark.png"],
     locale: "en_AU",
     type: "website",
   },
@@ -29,8 +37,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-AU" className={`${jakarta.variable} h-full scroll-smooth`}>
-      <body className="min-h-full font-sans antialiased">{children}</body>
+    <html
+      lang="en-AU"
+      className={`${jakarta.variable} ${sourceSans.variable} h-full scroll-smooth`}
+    >
+      <body className="min-h-full font-sans antialiased">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

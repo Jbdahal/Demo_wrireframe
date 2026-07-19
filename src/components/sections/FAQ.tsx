@@ -10,7 +10,7 @@ export function FAQ() {
         <FadeIn>
           <SectionHeader
             eyebrow="FAQ"
-            title="Common Questions"
+            title="Common questions"
             align="center"
             className="mb-12"
           />

@@ -12,8 +12,8 @@ const workers = [
 ];
 
 const reportMetrics = [
-  { label: "Shifts filled", value: "94%", width: "94%", color: "bg-teal" },
-  { label: "Compliance rate", value: "98%", width: "98%", color: "bg-blue" },
+  { label: "Shifts filled", value: "94%", width: "94%", color: "bg-primary" },
+  { label: "Compliance rate", value: "98%", width: "98%", color: "bg-strong" },
   { label: "Open vacancies", value: "3", width: "35%", color: "bg-amber-400" },
 ];
 
@@ -27,10 +27,10 @@ export function AIAnimation() {
           <motion.div
             animate={step >= 0 ? { scale: [1, 1.04, 1] } : {}}
             transition={{ duration: 2, repeat: Infinity }}
-            className="flex items-center gap-2 rounded-xl bg-purple/15 px-5 py-2.5 shadow-sm"
+            className="flex items-center gap-2 rounded-xl bg-light/15 px-5 py-2.5 shadow-sm"
           >
-            <Sparkles className="h-4 w-4 text-purple" />
-            <span className="text-sm font-bold text-purple">Vacant shift detected</span>
+            <Sparkles className="h-4 w-4 text-light" />
+            <span className="text-sm font-bold text-light">Vacant shift detected</span>
           </motion.div>
         </motion.div>
 
@@ -43,7 +43,7 @@ export function AIAnimation() {
               cx="100"
               cy="20"
               r="14"
-              fill="#7c3aed"
+              fill="#be9fff"
               animate={{ opacity: step >= 1 ? 1 : 0.3 }}
             />
             {workers.map((w, i) => (
@@ -53,7 +53,7 @@ export function AIAnimation() {
                   y1="34"
                   x2={w.x * 2}
                   y2="85"
-                  stroke="#7c3aed"
+                  stroke="#be9fff"
                   strokeWidth="2"
                   strokeOpacity={w.match && step >= 2 ? 1 : 0.2}
                   initial={{ pathLength: 0 }}
@@ -64,7 +64,7 @@ export function AIAnimation() {
                   cx={w.x * 2}
                   cy="85"
                   r="16"
-                  fill={w.match && step >= 2 ? "#7c3aed" : "#e2e8f0"}
+                  fill={w.match && step >= 2 ? "#be9fff" : "#ede6fa"}
                   animate={{ scale: step >= 1 ? 1 : 0.8 }}
                   transition={{ delay: 0.2 + i * 0.1 }}
                 />
@@ -79,7 +79,7 @@ export function AIAnimation() {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={springSoft}
-              className="text-center text-[10px] font-semibold text-purple"
+              className="text-center text-[10px] font-semibold text-light"
             >
               Best match: Worker W2
             </motion.p>
@@ -88,15 +88,15 @@ export function AIAnimation() {
 
         <motion.div animate={fadeStep(step, 3)} transition={springSoft}>
           <GlassCard>
-            <StepLabel color="blue">Document screening</StepLabel>
+            <StepLabel color="strong">Document screening</StepLabel>
             <div className="mt-3 space-y-2">
               {["WWCC verified", "First Aid current", "NDIS screening clear"].map((doc, i) => (
                 <div key={doc} className="flex items-center justify-between text-xs">
-                  <span className="text-navy/80">{doc}</span>
+                  <span className="text-darkest/80">{doc}</span>
                   <motion.span
                     animate={{ opacity: step >= 3 ? 1 : 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="font-semibold text-teal"
+                    className="font-semibold text-primary"
                   >
                     ✓
                   </motion.span>
@@ -110,10 +110,10 @@ export function AIAnimation() {
           <GlassCard>
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <BarChart3 className="h-4 w-4 text-blue" />
-                <p className="text-xs font-semibold text-navy">Weekly operations report</p>
+                <BarChart3 className="h-4 w-4 text-strong" />
+                <p className="text-xs font-semibold text-darkest">Weekly operations report</p>
               </div>
-              <TrendingUp className="h-4 w-4 text-teal" />
+              <TrendingUp className="h-4 w-4 text-primary" />
             </div>
             <div className="space-y-2.5">
               {reportMetrics.map((metric, i) => (
@@ -123,12 +123,12 @@ export function AIAnimation() {
                     <motion.span
                       animate={{ opacity: step >= 4 ? 1 : 0 }}
                       transition={{ delay: i * 0.08 }}
-                      className="font-bold text-navy"
+                      className="font-bold text-darkest"
                     >
                       {metric.value}
                     </motion.span>
                   </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-surface-alt">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-soft-alt">
                     <motion.div
                       className={`h-full rounded-full ${metric.color}`}
                       initial={{ width: 0 }}
@@ -144,7 +144,7 @@ export function AIAnimation() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={springSoft}
-                className="mt-3 flex items-center gap-1.5 text-[10px] font-medium text-purple"
+                className="mt-3 flex items-center gap-1.5 text-[10px] font-medium text-light"
               >
                 <Sparkles className="h-3 w-3" />
                 AI insight: 2 shifts at risk this week

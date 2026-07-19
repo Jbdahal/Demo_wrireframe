@@ -17,14 +17,14 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-surface-alt rounded-2xl border border-surface-alt bg-white">
+    <div className="divide-y divide-soft-alt rounded-2xl border border-soft-alt bg-white">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (
           <div key={item.question}>
             <button
               type="button"
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-navy transition-colors hover:text-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-darkest transition-colors hover:text-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-strong"
               aria-expanded={isOpen}
               onClick={() => setOpenIndex(isOpen ? null : index)}
             >
@@ -44,7 +44,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
               )}
             >
               <div className="overflow-hidden">
-                <p className="px-6 pb-5 text-muted leading-relaxed">
+                <p className="font-body px-6 pb-5 text-muted leading-relaxed">
                   {item.answer}
                 </p>
               </div>

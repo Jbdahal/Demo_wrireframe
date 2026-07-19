@@ -1,35 +1,32 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/Hero";
-import { OurStory } from "@/components/sections/OurStory";
-import { ChallengeFlow } from "@/components/sections/ChallengeFlow";
-import { TwoSides } from "@/components/sections/TwoSides";
-import { ProvidersSection } from "@/components/sections/ProvidersSection";
-import { AgenciesSection } from "@/components/sections/AgenciesSection";
-import { FeatureShowcase } from "@/components/sections/FeatureShowcase";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Challenges } from "@/components/sections/Challenges";
-import { FAQ } from "@/components/sections/FAQ";
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PageHero } from "@/components/sections/PageHero";
+import { BrandPromise } from "@/components/sections/BrandPromise";
+import { ProductShowcase } from "@/components/sections/ProductShowcase";
+import { ComingSoonTeaser } from "@/components/sections/ComingSoonTeaser";
+import { TrustSignals } from "@/components/sections/TrustSignals";
+import { CTASection } from "@/components/sections/CTASection";
+import { HeroVisual } from "@/components/visuals/HeroVisual";
+import { hero } from "@/lib/content";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <OurStory />
-        <ChallengeFlow />
-        <TwoSides />
-        <ProvidersSection />
-        <AgenciesSection />
-        <FeatureShowcase />
-        <Testimonials />
-        <Challenges />
-        <FAQ />
-        <FinalCTA />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <PageHero
+        eyebrow={hero.eyebrow}
+        headline={hero.headline}
+        subheadline={hero.subheadline}
+        ctas={hero.ctas}
+        visual={<HeroVisual />}
+      />
+      <BrandPromise />
+      <ProductShowcase />
+      <ComingSoonTeaser />
+      <TrustSignals />
+      <CTASection
+        title="Ready to see Pravaro in action?"
+        description="Book a demo and see how the Roster & Scheduling platform brings flow to your operations."
+        ctaLabel="Book a Demo"
+        ctaHref="/contact"
+      />
+    </main>
   );
 }

@@ -14,14 +14,14 @@ interface ButtonProps {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-navy text-white hover:bg-navy-dark shadow-md hover:shadow-lg",
+    "bg-darkest text-white hover:bg-darkest/90 shadow-md hover:shadow-lg",
   secondary:
-    "bg-teal text-white hover:bg-teal/90 shadow-md hover:shadow-lg",
+    "bg-primary text-white hover:bg-primary/90 shadow-md hover:shadow-lg",
   light:
-    "bg-white text-navy hover:bg-white/90 shadow-md hover:shadow-lg",
+    "bg-white text-darkest hover:bg-white/90 shadow-md hover:shadow-lg",
   outline:
-    "border-2 border-teal text-teal bg-transparent hover:bg-teal/10",
-  ghost: "text-navy hover:bg-surface-alt",
+    "border-2 border-primary text-primary bg-transparent hover:bg-primary/10",
+  ghost: "text-darkest hover:bg-soft-alt",
 };
 
 export function Button({
@@ -33,14 +33,14 @@ export function Button({
   type = "button",
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue",
+    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-strong",
     variants[variant],
     className
   );
 
-  if (href && href !== "#" && !onClick) {
+  if (href && href !== "#") {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
