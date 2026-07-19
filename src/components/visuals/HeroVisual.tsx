@@ -1,226 +1,170 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Calendar, ClipboardCheck, Handshake, Send, Shield, Sparkles, Users } from "lucide-react";
-import { springGentle, springSoft } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+import { motion, useReducedMotion } from "framer-motion";
+import { springGentle } from "@/lib/motion";
 
-const MotionLink = motion.create(Link);
+const CAPE_REST =
+  "M118,50 C150,58 176,86 182,130 C184,160 178,188 164,210 C150,190 138,168 132,144 C126,118 120,84 118,50 Z";
+const CAPE_BILLOW_OUT =
+  "M118,50 C158,54 192,78 202,124 C206,158 196,190 176,214 C158,192 142,168 134,144 C126,118 120,84 118,50 Z";
+const CAPE_BILLOW_IN =
+  "M118,50 C142,60 164,90 168,130 C170,156 166,182 156,204 C144,186 134,166 130,144 C125,118 120,84 118,50 Z";
 
-const slides = [
-  {
-    key: "roster",
-    label: "Roster & Scheduling",
-    status: "live" as const,
-    blocks: [
-      {
-        icon: Calendar,
-        label: "Rostering",
-        color: "bg-primary/20 text-primary",
-        href: "/products/roster#roster-hub",
-      },
-      {
-        icon: Users,
-        label: "Workforce",
-        color: "bg-strong/20 text-strong",
-        href: "/products/roster#staff-management",
-      },
-      {
-        icon: Shield,
-        label: "Compliance",
-        color: "bg-light/40 text-strong",
-        href: "/products/roster#compliance-monitoring",
-      },
-      {
-        icon: Sparkles,
-        label: "AI Assist",
-        color: "bg-light/40 text-strong",
-        href: "/products/roster#ai-operations",
-      },
-    ],
-    footer: { label: "Shifts matched today", value: "24" },
-  },
-  {
-    key: "marketplace",
-    label: "Marketplace",
-    status: "soon" as const,
-    blocks: [
-      {
-        icon: Send,
-        label: "Vacant Shifts",
-        color: "bg-primary/20 text-primary",
-        href: "/products/marketplace#vacant-shift-publishing",
-      },
-      {
-        icon: Users,
-        label: "Agency Bids",
-        color: "bg-strong/20 text-strong",
-        href: "/products/marketplace#structured-bid-workflow",
-      },
-      {
-        icon: ClipboardCheck,
-        label: "Placements",
-        color: "bg-light/40 text-strong",
-        href: "/products/marketplace#documented-placements",
-      },
-      {
-        icon: Handshake,
-        label: "Agencies",
-        color: "bg-light/40 text-strong",
-        href: "/products/marketplace#agency-collaboration",
-      },
-    ],
-    footer: { label: "Open shifts today", value: "12" },
-  },
+const SPEED_LINES = [
+  { x1: 8, y1: 168, x2: 8, y2: 206, delay: 0 },
+  { x1: -10, y1: 188, x2: -10, y2: 218, delay: 0.3 },
+  { x1: 26, y1: 200, x2: 26, y2: 233, delay: 0.6 },
 ];
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-};
-
-const card = {
-  hidden: { opacity: 0, scale: 0.94, y: 12 },
-  show: { opacity: 1, scale: 1, y: 0, transition: springSoft },
-};
-
-function BrowserChrome() {
+function FigureMarkup({ capeD }: { capeD: string }) {
   return (
-    <div className="mb-4 flex items-center justify-between">
-      <div className="flex gap-1.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-        <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-        <span className="h-2.5 w-2.5 rounded-full bg-teal-400/80" />
-      </div>
-      <span className="text-xs font-medium text-white/60">pravaro.com</span>
-    </div>
-  );
-}
-
-function SlideTabs({
-  active,
-  onSelect,
-}: {
-  active: number;
-  onSelect: (i: number) => void;
-}) {
-  return (
-    <div className="mb-4 flex gap-2">
-      {slides.map((slide, i) => (
-        <button
-          key={slide.key}
-          type="button"
-          onClick={() => onSelect(i)}
-          className={cn(
-            "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors",
-            active === i ? "bg-darkest text-white" : "bg-white/10 text-white/70 hover:bg-white/20"
-          )}
-        >
-          {slide.label}
-          <span
-            className={cn(
-              "rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide",
-              slide.status === "live" ? "bg-primary text-white" : "bg-white/20 text-white/80"
-            )}
-          >
-            {slide.status === "live" ? "Live" : "Soon"}
-          </span>
-        </button>
+    <g transform="rotate(-22 100 130)">
+      {SPEED_LINES.map((line, i) => (
+        <line
+          key={i}
+          x1={line.x1}
+          y1={line.y1}
+          x2={line.x2}
+          y2={line.y2}
+          stroke="url(#speedGradient)"
+          strokeWidth={4}
+          strokeLinecap="round"
+          opacity={0.35}
+        />
       ))}
-    </div>
+      <path d={capeD} fill="url(#capeGradient)" opacity={0.92} />
+      <path
+        d="M88,122 C82,148 74,172 62,192 L48,182 C60,158 70,136 80,120 Z"
+        fill="url(#bodyGradient)"
+      />
+      <path
+        d="M112,122 C118,150 122,178 128,206 L142,200 C132,172 124,146 116,120 Z"
+        fill="url(#bodyGradient)"
+      />
+      <path
+        d="M84,56 C66,64 54,80 50,100 L62,104 C70,86 82,72 96,64 Z"
+        fill="url(#bodyGradient)"
+      />
+      <path
+        d="M82,52 C74,70 76,96 84,122 L116,122 C124,96 126,70 118,52 C110,60 90,60 82,52 Z"
+        fill="url(#bodyGradient)"
+      />
+      <path
+        d="M116,56 C136,50 152,38 160,20 L172,26 C162,48 144,64 122,74 Z"
+        fill="url(#bodyGradient)"
+      />
+      <circle cx={100} cy={34} r={14} fill="url(#bodyGradient)" />
+    </g>
   );
 }
 
-function SlideContent({ slide }: { slide: (typeof slides)[number] }) {
+function GradientDefs() {
   return (
-    <>
-      <motion.div
-        className="grid grid-cols-2 gap-3"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {slide.blocks.map(({ icon: Icon, label, color, href }) => (
-          <MotionLink
-            key={label}
-            href={href}
-            variants={card}
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="block cursor-pointer rounded-xl bg-white/95 p-4 shadow-lg ring-1 ring-transparent transition-shadow hover:shadow-xl hover:ring-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            <div className={`mb-3 inline-flex rounded-lg p-2 ${color}`}>
-              <Icon className="h-5 w-5" />
-            </div>
-            <p className="text-sm font-semibold text-darkest">{label}</p>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-soft-alt">
-              <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-primary to-strong"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                style={{ transformOrigin: "left" }}
-                transition={{ ...springGentle, delay: 0.35 }}
-              />
-            </div>
-          </MotionLink>
-        ))}
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ ...springGentle, delay: 0.5 }}
-        className="mt-3 flex items-center justify-between rounded-xl bg-darkest/90 px-4 py-3 text-white"
-      >
-        <span className="text-xs text-white/70">{slide.footer.label}</span>
-        <span className="text-lg font-bold text-primary">{slide.footer.value}</span>
-      </motion.div>
-    </>
+    <defs>
+      <linearGradient id="bodyGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#422d6f" />
+        <stop offset="100%" stopColor="#5a37a4" />
+      </linearGradient>
+      <linearGradient id="capeGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#5a37a4" />
+        <stop offset="100%" stopColor="#be9fff" />
+      </linearGradient>
+      <linearGradient id="speedGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#be9fff" stopOpacity="0" />
+        <stop offset="100%" stopColor="#f6f1ff" stopOpacity="0.9" />
+      </linearGradient>
+    </defs>
   );
 }
 
 export function HeroVisual() {
   const reduced = useReducedMotion();
-  const [active, setActive] = useState(0);
-
-  const slide = slides[active];
 
   if (reduced) {
     return (
       <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
-        <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-5 shadow-2xl backdrop-blur-md">
-          <BrowserChrome />
-          <SlideTabs active={active} onSelect={setActive} />
-          <SlideContent slide={slide} />
-        </div>
+        <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/25 via-transparent to-strong/25 blur-3xl" />
+        <svg
+          viewBox="-20 0 240 260"
+          className="relative h-auto w-full"
+          role="img"
+          aria-label="A heroic figure in flight, cape trailing behind"
+        >
+          <GradientDefs />
+          <FigureMarkup capeD={CAPE_REST} />
+        </svg>
       </div>
     );
   }
 
   return (
     <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
-      <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/20 via-transparent to-strong/20 blur-2xl" />
+      <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/25 via-transparent to-strong/25 blur-3xl" />
       <motion.div
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={springGentle}
-        className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-5 shadow-2xl backdrop-blur-md"
+        className="relative"
       >
-        <BrowserChrome />
-        <SlideTabs active={active} onSelect={setActive} />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slide.key}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -16 }}
-            transition={springGentle}
-          >
-            <SlideContent slide={slide} />
-          </motion.div>
-        </AnimatePresence>
+        <motion.svg
+          viewBox="-20 0 240 260"
+          className="h-auto w-full"
+          role="img"
+          aria-label="A heroic figure in flight, cape trailing behind"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <GradientDefs />
+          <g transform="rotate(-22 100 130)">
+            {SPEED_LINES.map((line, i) => (
+              <motion.line
+                key={i}
+                x1={line.x1}
+                y1={line.y1}
+                x2={line.x2}
+                y2={line.y2}
+                stroke="url(#speedGradient)"
+                strokeWidth={4}
+                strokeLinecap="round"
+                animate={{ opacity: [0, 0.6, 0] }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: line.delay,
+                }}
+              />
+            ))}
+            <motion.path
+              fill="url(#capeGradient)"
+              opacity={0.92}
+              animate={{ d: [CAPE_REST, CAPE_BILLOW_OUT, CAPE_BILLOW_IN, CAPE_REST] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <path
+              d="M88,122 C82,148 74,172 62,192 L48,182 C60,158 70,136 80,120 Z"
+              fill="url(#bodyGradient)"
+            />
+            <path
+              d="M112,122 C118,150 122,178 128,206 L142,200 C132,172 124,146 116,120 Z"
+              fill="url(#bodyGradient)"
+            />
+            <path
+              d="M84,56 C66,64 54,80 50,100 L62,104 C70,86 82,72 96,64 Z"
+              fill="url(#bodyGradient)"
+            />
+            <path
+              d="M82,52 C74,70 76,96 84,122 L116,122 C124,96 126,70 118,52 C110,60 90,60 82,52 Z"
+              fill="url(#bodyGradient)"
+            />
+            <path
+              d="M116,56 C136,50 152,38 160,20 L172,26 C162,48 144,64 122,74 Z"
+              fill="url(#bodyGradient)"
+            />
+            <circle cx={100} cy={34} r={14} fill="url(#bodyGradient)" />
+          </g>
+        </motion.svg>
       </motion.div>
     </div>
   );
