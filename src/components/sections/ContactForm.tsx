@@ -2,14 +2,10 @@
 
 import { useState } from "react";
 
-/**
- * No backend exists yet — this stubs a client-side confirmation state.
- * See design doc §8: needs a real submission target (form service or API route).
- */
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "submitted" | "error">("idle");
 
-  if (submitted) {
+  if (status === "submitted") {
     return (
       <div className="rounded-2xl border border-soft-alt bg-soft/30 p-8 text-center">
         <h3 className="text-xl font-bold text-darkest">Thanks! We&rsquo;ll be in touch.</h3>
@@ -23,9 +19,30 @@ export function ContactForm() {
   return (
     <form
       className="space-y-5 rounded-2xl border border-soft-alt bg-white p-8 shadow-sm"
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        setSubmitted(true);
+        setStatus("submitting");
+
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        try {
+          const res = await fetch("/api/book-demo", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: data.get("name"),
+              email: data.get("email"),
+              organisation: data.get("organisation"),
+              message: data.get("message"),
+            }),
+          });
+
+          if (!res.ok) throw new Error("Request failed");
+          setStatus("submitted");
+        } catch {
+          setStatus("error");
+        }
       }}
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -45,11 +62,17 @@ export function ContactForm() {
           placeholder="Tell us a bit about your team and what you're looking for."
         />
       </div>
+      {status === "error" && (
+        <p className="font-body text-sm text-red-600">
+          Something went wrong sending your request. Please try again.
+        </p>
+      )}
       <button
         type="submit"
-        className="w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-strong sm:w-auto"
+        disabled={status === "submitting"}
+        className="w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-strong disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
-        Book a Demo
+        {status === "submitting" ? "Sending…" : "Book a Demo"}
       </button>
     </form>
   );

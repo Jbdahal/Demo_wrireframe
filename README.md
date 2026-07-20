@@ -30,7 +30,7 @@ npm run lint    # eslint
 | Icons | lucide-react |
 | Fonts | Plus Jakarta Sans (headings/UI), Source Sans 3 (body copy) |
 
-No CMS and no backend — all copy lives in typed TypeScript modules (see below), and there are no API routes. The contact form and "notify me" flows are currently front-end only (see [Known gaps](#known-gaps)).
+No CMS — all copy lives in typed TypeScript modules (see below). One API route exists: `/api/book-demo`, which emails demo requests from the contact form (see [Environment variables](#environment-variables)). The "notify me" capture is still front-end only (see [Known gaps](#known-gaps)).
 
 ## Project structure
 
@@ -131,14 +131,40 @@ Never hardcode hex values in components — use the token classes so a future pa
 - `FeatureBlock`'s "+N more capabilities" expand/collapse animates only the delta items (via `AnimatePresence`), not the whole card — see that component if you're adding similar expand/collapse UI.
 - The homepage `HeroVisual` and the Roster product page's `Carousel` both support keyboard/click navigation, not just hover.
 
+## Environment variables
+
+`/api/book-demo` (used by the contact form's "Book a Demo" submit) sends mail via SMTP through Nodemailer. It needs these variables at runtime — copy `.env.local.example` to `.env.local` and fill in real values for local dev:
+
+| Variable | Purpose |
+|---|---|
+| `SMTP_HOST` | SMTP server host, e.g. `smtp.gmail.com` |
+| `SMTP_PORT` | SMTP server port, e.g. `587` |
+| `SMTP_SECURE` | `"true"` for port 465, `"false"` for STARTTLS (587) |
+| `SMTP_USER` | Sending account username (also used as the `From` address) |
+| `SMTP_PASS` | Sending account password / app password |
+
+Demo requests are currently hardcoded to land at **jbdahal13@gmail.com** (`DEMO_NOTIFY_EMAIL` in `src/app/api/book-demo/route.ts`).
+
+Without these set, submitting the form returns a 400/502 and no email is sent — see [Known gaps](#known-gaps).
+
 ## Known gaps
 
 These are intentionally stubbed pending real infrastructure — flagged here so they don't get mistaken for bugs:
 
-- **Contact form** (`components/sections/ContactForm.tsx`) and **"Notify me" capture** (`components/ui/ComingSoonCard.tsx`) are client-side only — no submission target yet. Needs either a form service (e.g. HubSpot/Calendly embed) or a Next.js API route + email provider.
+- **Contact form** (`components/sections/ContactForm.tsx`) posts to `/api/book-demo`, but that route needs the SMTP env vars above configured — without them, submissions fail. The destination email is also hardcoded rather than user-configurable.
+- **"Notify me" capture** (`components/ui/ComingSoonCard.tsx`) is still client-side only — no submission target yet.
 - `/resources` is a stub (FAQ only) — no blog/docs yet.
 - Legal pages (Privacy Policy, Terms of Service) are placeholder links (`#`) in the footer.
 
 ## Deployment
 
-Standard Next.js app — deploys as-is to Vercel or any Node host. No environment variables are required for the current feature set.
+Standard Next.js app — deploys as-is to Vercel or any Node host. Requires the SMTP [environment variables](#environment-variables) above for the demo-booking email to work.
+
+### Docker
+
+```bash
+docker build -t pravaro-website .
+docker run --env-file .env.local -p 3000:3000 pravaro-website
+```
+
+The `Dockerfile` declares empty `SMTP_*` defaults for documentation — it does **not** bake in real credentials (they're gitignored via `.env*` in `.dockerignore`). Pass them at `docker run` time with `--env-file` or `-e`, or the demo form will fail to send.

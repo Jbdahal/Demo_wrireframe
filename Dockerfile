@@ -27,4 +27,14 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
+# SMTP credentials for the /api/book-demo route (send demo requests by
+# email). Not baked into the image — pass real values at `docker run`
+# time with -e or --env-file, e.g.:
+#   docker run --env-file .env.local -p 3000:3000 pravaro-website
+ENV SMTP_HOST=""
+ENV SMTP_PORT="587"
+ENV SMTP_SECURE="false"
+ENV SMTP_USER=""
+ENV SMTP_PASS=""
+
 CMD ["node", "server.js"]
