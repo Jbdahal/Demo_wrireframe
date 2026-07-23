@@ -50,7 +50,7 @@ export const rosterProduct = {
         "Calendar-based shift creation and assignment, with recurring templates and conflict detection built in.",
       subFeatures: [
         "Easy shift scheduling",
-        "Shift availability and leave management",
+        "Shift availability",
         "Recurring roster templates",
         "Automated shift notifications (SMS/email)",
         "Shift conflict detection and break compliance alerts",
@@ -79,7 +79,6 @@ export const rosterProduct = {
       subFeatures: [
         "Complete staff profiles",
         "Time and attendance tracking",
-        "Leave management (sick leave, annual leave)",
         "Worker qualification matching before scheduling",
         "Team coordination across multiple locations",
         "Supervisor approval workflows",
