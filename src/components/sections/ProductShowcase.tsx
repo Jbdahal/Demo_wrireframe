@@ -47,8 +47,8 @@ function DeviceMockup() {
         </div>
         <div className="relative aspect-[9/19.5] w-full">
           <Image
-            src="/screenshots/mobile-login.png"
-            alt="Pravaro Staff App sign-in screen"
+            src="/screenshots/mobile-roster.png"
+            alt="Pravaro Staff App roster screen"
             fill
             className="object-cover object-top"
           />
