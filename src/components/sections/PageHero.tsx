@@ -59,7 +59,7 @@ export function PageHero({
               <FadeIn delay={0.2}>
                 <p
                   className={`font-body mt-6 text-lg leading-relaxed text-white/90 ${
-                    visual ? "max-w-xl" : "mx-auto max-w-2xl"
+                    visual ? "max-w-xl" : "mx-auto max-w-3xl"
                   }`}
                 >
                   {subheadline}

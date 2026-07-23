@@ -1,0 +1,569 @@
+export const dynamic = "force-static";
+
+const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pravaro — NDIS Operations Platform</title>
+<link rel="icon" href="/icon.png" type="image/png" />
+<meta name="description" content="Pravaro brings together the tools care teams, schedulers, agencies, and administrators need to run NDIS operations." />
+<meta name="theme-color" content="#EDE7F8" />
+
+<!-- Social preview -->
+<meta property="og:title" content="Pravaro — NDIS Operations Platform" />
+<meta property="og:description" content="Scheduling, staff management and payroll for NDIS operations, without the admin overhead." />
+<meta property="og:image" content="/landing/dashboard.png" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS  (values taken straight from the Figma file)
+   ============================================================ */
+:root{
+  --brand-logo:      #9178C6;   /* wordmark                     */
+  --brand-deep:      #5A37A4;   /* primary buttons              */
+  --brand-deep-hi:   #6B45BD;   /* button hover                 */
+  --ink:             #422D6F;   /* body copy                    */
+  --ink-strong:      #000000;   /* tagline                      */
+  --surface:         #EDE7F8;   /* page fallback behind pattern */
+  --white:           #FFFFFF;
+
+  --radius-btn: 15px;
+  --shadow-btn: 0 14px 30px -14px rgba(66, 45, 111, .55);
+
+  /* Fluid type scale — 1440px is the design canvas width */
+  --fs-tagline: clamp(1.125rem, 1.80vw, 1.625rem);   /* 18 → 26px */
+  --fs-body:    clamp(0.9375rem, 1.46vw, 1.3125rem); /* 15 → 21px */
+  --fs-btn:     clamp(1.0625rem, 2.08vw, 1.875rem);  /* 17 → 30px */
+
+  /* Fluid layout rails — mirrors the 107px / 254px indents */
+  --pad-x:   clamp(20px, 7.43vw, 107px);
+  --indent:  clamp(0px, 10.21vw, 147px);
+}
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:"Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  color:var(--ink);
+  background:var(--surface);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{ display:block; max-width:100%; }
+button{ font:inherit; color:inherit; }
+
+/* ============================================================
+   3. HERO SHELL
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  isolation:isolate;
+}
+/* the lilac swirl artwork — anchored left, exactly like the design */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background-color:var(--surface);
+  background-image:url("/landing/bg-pattern.jpg");
+  background-repeat:no-repeat;
+  background-position:left top;
+  background-size:cover;
+}
+
+.hero__inner{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:1440px;
+  margin-inline:auto;
+  padding:clamp(40px, 12.4vh, 127px) var(--pad-x) clamp(48px, 9vh, 92px);
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+}
+
+/* ============================================================
+   4. BRAND BLOCK
+   ============================================================ */
+.brand{ margin-left:var(--indent); }
+.brand__logo{
+  width:clamp(176px, 19.3vw, 278px);
+  height:auto;
+}
+.brand__tagline{
+  margin:.35em 0 0;
+  padding-left:.9em;
+  font-size:var(--fs-tagline);
+  font-weight:800;
+  letter-spacing:-.01em;
+  color:var(--ink-strong);
+}
+
+/* ============================================================
+   5. INTRO COPY
+   ============================================================ */
+.intro{
+  margin:clamp(28px, 5.9vh, 60px) 0 0;
+  margin-left:var(--indent);
+  max-width:1128px;
+}
+.intro p{
+  margin:0 0 .85em;
+  font-size:var(--fs-body);
+  line-height:1.45;
+  font-weight:500;
+  letter-spacing:-.005em;
+}
+.intro p:last-child{ margin-bottom:0; }
+
+/* ============================================================
+   6. CALLS TO ACTION
+   ============================================================ */
+.actions{
+  margin-top:clamp(36px, 20vh, 205px);
+  display:flex;
+  flex-direction:column;
+  gap:clamp(16px, 4.6vh, 48px);
+  width:min(569px, 100%);
+}
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  width:100%;
+  min-height:clamp(58px, 9.4vh, 96px);
+  padding:.75em 1.25em;
+  border:0;
+  border-radius:var(--radius-btn);
+  background:var(--brand-deep);
+  color:var(--white);
+  font-size:var(--fs-btn);
+  font-weight:500;
+  letter-spacing:-.01em;
+  text-decoration:none;
+  cursor:pointer;
+  box-shadow:var(--shadow-btn);
+  transition:background-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+.btn:hover{
+  background:var(--brand-deep-hi);
+  transform:translateY(-2px);
+  box-shadow:0 20px 34px -14px rgba(66,45,111,.6);
+}
+.btn:active{ transform:translateY(0); }
+.btn:focus-visible{
+  outline:3px solid var(--ink);
+  outline-offset:4px;
+}
+
+/* ============================================================
+   7. DEVICE ILLUSTRATION
+   ============================================================ */
+.device{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:53%;
+  max-width:763px;
+  z-index:1;
+  pointer-events:none;
+}
+.device svg{ width:100%; height:auto; }
+
+/* ============================================================
+   8. CONTACT DIALOG
+   ============================================================ */
+.contact{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(43,28,74,.55);
+  backdrop-filter:blur(4px);
+}
+.contact[open],
+.contact.is-open{ display:flex; }
+.contact__card{
+  width:min(440px, 100%);
+  background:var(--white);
+  border-radius:20px;
+  padding:clamp(24px, 4vw, 34px);
+  box-shadow:0 30px 70px -20px rgba(43,28,74,.55);
+  animation:rise .28s ease both;
+}
+@keyframes rise{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:none;} }
+.contact__eyebrow{
+  margin:0 0 4px;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brand-logo);
+}
+.contact__name{ margin:0; font-size:1.5rem; font-weight:800; color:var(--ink); }
+.contact__role{ margin:2px 0 18px; font-size:.95rem; font-weight:500; opacity:.75; }
+.contact__list{ list-style:none; margin:0 0 22px; padding:0; display:grid; gap:10px; }
+.contact__list a{
+  display:block;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#F3EFFB;
+  color:var(--ink);
+  font-weight:600;
+  font-size:.98rem;
+  text-decoration:none;
+  word-break:break-word;
+  transition:background-color .18s ease;
+}
+.contact__list a:hover{ background:#E7DEF9; }
+.contact__actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.contact__actions .btn{ min-height:50px; font-size:1rem; border-radius:12px; box-shadow:none; }
+.btn--ghost{
+  background:transparent;
+  color:var(--brand-deep);
+  border:2px solid #D9CCF2;
+}
+.btn--ghost:hover{ background:#F3EFFB; color:var(--brand-deep); }
+
+/* ============================================================
+   8b. SITE FOOTER
+   ============================================================ */
+.site-footer{
+  position:relative;
+  z-index:2;
+  border-top:1px solid rgba(66,45,111,.12);
+  padding:20px var(--pad-x) 26px;
+}
+.site-footer__inner{
+  max-width:1440px;
+  margin-inline:auto;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.site-footer__contact{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.site-footer__contact a{
+  color:var(--ink);
+  font-weight:600;
+  font-size:.9rem;
+  text-decoration:none;
+}
+.site-footer__contact a:hover{ color:var(--brand-deep); text-decoration:underline; }
+.site-footer__copy{
+  margin:0;
+  font-size:.8rem;
+  color:var(--ink);
+  opacity:.6;
+}
+
+/* ============================================================
+   9. RESPONSIVE — TABLET  (≤ 1024px)
+   ============================================================ */
+@media (max-width:1024px){
+  .hero{ min-height:0; }
+  .hero__inner{
+    padding:clamp(36px,6vh,56px) clamp(28px,5vw,48px) 0;
+  }
+  .brand, .intro{ margin-left:0; }
+  .intro{ max-width:100%; }
+  .actions{
+    margin-top:clamp(32px,5vh,44px);
+    width:min(569px,100%);
+  }
+  .device{
+    position:static;
+    width:min(680px,100%);
+    margin:clamp(36px,6vw,56px) auto 0;
+    margin-right:calc(clamp(28px,5vw,48px) * -1);
+    max-width:none;
+  }
+  .hero::before{ background-size:cover; background-position:left center; }
+}
+
+/* ============================================================
+   10. RESPONSIVE — MOBILE  (≤ 640px)
+   ============================================================ */
+@media (max-width:640px){
+  .hero__inner{ padding:32px 22px 0; }
+  .brand__logo{ width:172px; }
+  .brand__tagline{ padding-left:.5em; }
+  .intro{ margin-top:26px; }
+  .intro p{ line-height:1.5; }
+  .actions{ margin-top:30px; gap:14px; width:100%; }
+  .btn{ min-height:60px; }
+  .device{
+    width:calc(100% + 44px);
+    margin:34px -22px 0;
+  }
+  .contact__card{ border-radius:16px; }
+}
+
+@media (max-width:380px){
+  .btn{ font-size:1rem; }
+}
+
+/* ============================================================
+   11. MOTION / A11Y PREFERENCES
+   ============================================================ */
+.reveal{ opacity:0; transform:translateY(18px); }
+.is-ready .reveal{
+  opacity:1;
+  transform:none;
+  transition:opacity .6s ease, transform .6s cubic-bezier(.22,.8,.3,1);
+}
+.is-ready .reveal:nth-child(2){ transition-delay:.08s; }
+.is-ready .reveal:nth-child(3){ transition-delay:.16s; }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{ opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+<main class="hero">
+  <div class="hero__inner">
+
+    <!-- Brand ------------------------------------------------>
+    <header class="brand reveal">
+      <!-- Pravaro wordmark (vector, straight from the Figma file) -->
+      <svg class="brand__logo" viewBox="252 125 282 78" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pravaro">
+<path d="M254.394 199.667L259.578 166.152C260.193 162.081 261.495 158.625 263.483 155.785C265.519 152.945 268.027 150.791 271.01 149.323C273.992 147.809 277.234 147.051 280.737 147.051C284.193 147.051 287.199 147.738 289.755 149.11C292.311 150.436 294.3 152.353 295.72 154.862C297.187 157.371 297.921 160.377 297.921 163.88C297.921 166.625 297.471 169.276 296.572 171.832C295.672 174.341 294.371 176.59 292.666 178.578C290.962 180.519 288.903 182.057 286.489 183.193C284.122 184.329 281.471 184.897 278.536 184.897C275.933 184.897 273.637 184.424 271.649 183.477C269.661 182.483 268.217 181.181 267.317 179.572H267.246L264.122 199.667H254.394ZM277.826 176.59C279.767 176.59 281.495 176.069 283.01 175.028C284.572 173.939 285.803 172.495 286.702 170.696C287.601 168.897 288.051 166.862 288.051 164.59C288.051 162.696 287.72 161.063 287.057 159.69C286.394 158.318 285.424 157.252 284.146 156.495C282.915 155.738 281.4 155.359 279.601 155.359C277.755 155.359 276.051 155.88 274.489 156.921C272.927 157.962 271.672 159.383 270.726 161.181C269.779 162.933 269.306 164.945 269.306 167.217C269.306 169.063 269.661 170.696 270.371 172.116C271.081 173.489 272.075 174.578 273.353 175.383C274.631 176.187 276.122 176.59 277.826 176.59Z" fill="#9178C6"/>
+<path d="M303.438 184.116L307.485 158.199C308.006 154.98 309.307 152.471 311.39 150.673C313.52 148.826 316.195 147.903 319.414 147.903H329.426L328.148 156.211H319.84C319.225 156.211 318.657 156.424 318.136 156.85C317.615 157.276 317.307 157.82 317.213 158.483L313.165 184.116H303.438Z" fill="#9178C6"/>
+<path d="M345.709 185.039C342.775 185.039 340.218 184.353 338.041 182.98C335.863 181.607 334.183 179.667 332.999 177.158C331.816 174.649 331.224 171.738 331.224 168.424C331.224 165.252 331.698 162.365 332.644 159.761C333.638 157.11 335.035 154.838 336.834 152.945C338.68 151.051 340.857 149.607 343.366 148.613C345.875 147.572 348.644 147.051 351.674 147.051C353.662 147.051 355.698 147.359 357.78 147.974C359.863 148.542 361.78 149.489 363.532 150.815C365.331 152.093 366.774 153.82 367.863 155.998C368.952 158.128 369.496 160.779 369.496 163.951C369.496 164.661 369.473 165.323 369.425 165.939C369.378 166.507 369.307 167.075 369.212 167.643L366.514 184.116H356.786L357.638 178.507H357.496C355.982 180.542 354.159 182.152 352.029 183.335C349.946 184.471 347.84 185.039 345.709 185.039ZM349.331 176.732C351.224 176.732 352.928 176.187 354.443 175.099C356.005 174.01 357.26 172.542 358.206 170.696C359.153 168.85 359.627 166.791 359.627 164.519C359.627 162.767 359.295 161.229 358.632 159.903C358.017 158.531 357.094 157.442 355.863 156.637C354.632 155.832 353.118 155.43 351.319 155.43C349.473 155.43 347.769 155.974 346.206 157.063C344.644 158.152 343.39 159.643 342.443 161.536C341.544 163.383 341.094 165.465 341.094 167.785C341.094 169.726 341.425 171.359 342.088 172.684C342.751 174.01 343.698 175.028 344.928 175.738C346.159 176.4 347.627 176.732 349.331 176.732Z" fill="#9178C6"/>
+<path d="M390.559 184.968C388.334 184.968 386.37 184.353 384.666 183.122C382.961 181.891 381.896 180.093 381.47 177.726L376.216 147.903H386.512L390.559 174.815C390.606 175.004 390.677 175.146 390.772 175.241C390.914 175.335 391.08 175.383 391.269 175.383C391.79 175.383 392.121 175.193 392.263 174.815L404.76 147.903H415.695L400.429 178.72C399.482 180.613 398.18 182.128 396.524 183.264C394.867 184.4 392.879 184.968 390.559 184.968Z" fill="#9178C6"/>
+<path d="M430.581 185.039C427.646 185.039 425.09 184.353 422.912 182.98C420.735 181.607 419.054 179.667 417.871 177.158C416.687 174.649 416.096 171.738 416.096 168.424C416.096 165.252 416.569 162.365 417.516 159.761C418.51 157.11 419.906 154.838 421.705 152.945C423.551 151.051 425.729 149.607 428.238 148.613C430.746 147.572 433.516 147.051 436.545 147.051C438.533 147.051 440.569 147.359 442.652 147.974C444.735 148.542 446.652 149.489 448.403 150.815C450.202 152.093 451.646 153.82 452.735 155.998C453.823 158.128 454.368 160.779 454.368 163.951C454.368 164.661 454.344 165.323 454.297 165.939C454.249 166.507 454.178 167.075 454.084 167.643L451.385 184.116H441.658L442.51 178.507H442.368C440.853 180.542 439.03 182.152 436.9 183.335C434.817 184.471 432.711 185.039 430.581 185.039ZM434.202 176.732C436.096 176.732 437.8 176.187 439.315 175.099C440.877 174.01 442.131 172.542 443.078 170.696C444.025 168.85 444.498 166.791 444.498 164.519C444.498 162.767 444.167 161.229 443.504 159.903C442.888 158.531 441.965 157.442 440.735 156.637C439.504 155.832 437.989 155.43 436.19 155.43C434.344 155.43 432.64 155.974 431.078 157.063C429.516 158.152 428.261 159.643 427.315 161.536C426.415 163.383 425.965 165.465 425.965 167.785C425.965 169.726 426.297 171.359 426.959 172.684C427.622 174.01 428.569 175.028 429.8 175.738C431.03 176.4 432.498 176.732 434.202 176.732Z" fill="#9178C6"/>
+<path d="M462.155 184.116L466.202 158.199C466.723 154.98 468.025 152.471 470.108 150.673C472.238 148.826 474.912 147.903 478.131 147.903H488.143L486.865 156.211H478.557C477.942 156.211 477.374 156.424 476.853 156.85C476.333 157.276 476.025 157.82 475.93 158.483L471.883 184.116H462.155Z" fill="#9178C6"/>
+<path d="M508.119 184.968C504.711 184.968 501.634 184.258 498.888 182.838C496.143 181.418 493.965 179.43 492.356 176.874C490.746 174.27 489.942 171.241 489.942 167.785C489.942 164.85 490.51 162.128 491.646 159.619C492.782 157.11 494.32 154.909 496.261 153.016C498.249 151.122 500.522 149.655 503.078 148.613C505.634 147.572 508.356 147.051 511.243 147.051C514.604 147.051 517.634 147.761 520.332 149.181C523.03 150.602 525.161 152.613 526.723 155.217C528.332 157.773 529.137 160.803 529.137 164.306C529.137 167.193 528.592 169.891 527.504 172.4C526.415 174.909 524.9 177.11 522.959 179.004C521.066 180.897 518.841 182.365 516.285 183.406C513.776 184.448 511.054 184.968 508.119 184.968ZM508.687 176.661C510.912 176.661 512.806 176.093 514.368 174.957C515.977 173.773 517.184 172.282 517.989 170.483C518.841 168.637 519.267 166.696 519.267 164.661C519.267 162.815 518.912 161.205 518.202 159.832C517.492 158.412 516.474 157.323 515.149 156.566C513.823 155.761 512.261 155.359 510.462 155.359C508.285 155.359 506.391 155.927 504.782 157.063C503.22 158.199 501.989 159.69 501.09 161.536C500.237 163.335 499.811 165.276 499.811 167.359C499.811 169.11 500.166 170.696 500.877 172.116C501.587 173.536 502.604 174.649 503.93 175.454C505.303 176.258 506.888 176.661 508.687 176.661Z" fill="#9178C6"/>
+<path d="M529.447 127.183C530.604 126.454 532.072 127.727 531.18 128.748C525.124 135.684 517.398 139.282 509.835 137.726C505.83 136.902 502.313 134.724 499.438 131.549C498.151 130.128 499.738 127.671 501.268 128.564C503.642 129.951 506.198 130.951 508.914 131.51C515.896 132.946 522.979 131.265 529.447 127.183Z" fill="#9178C6"/>
+</svg>
+      <p class="brand__tagline">NDIS Operations Platform.</p>
+    </header>
+
+    <!-- Intro copy ------------------------------------------->
+    <section class="intro reveal">
+      <p>Pravaro brings together the tools care teams, schedulers, agencies, and administrators need to run NDIS operations.</p>
+      <p>It's a growing platform of NDIS operations software, bringing everything the team needs, from scheduling shifts to managing staff and keeping payroll moving, without the admin overhead.</p>
+    </section>
+
+    <!-- Calls to action -------------------------------------->
+    <nav class="actions reveal" aria-label="Primary actions">
+      <a class="btn" href="/">Visit Website Homepage</a>
+      <button class="btn" type="button" id="contactBtn" aria-haspopup="dialog">Get Contact info of Representative</button>
+    </nav>
+
+  </div>
+
+  <!-- Monitor illustration ----------------------------------->
+  <div class="device" aria-hidden="true">
+    <svg viewBox="686 587 763 437" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMax meet" focusable="false">
+<defs>
+  <pattern id="screenPattern" patternContentUnits="objectBoundingBox" width="1" height="1">
+    <use xlink:href="#screenShot" transform="scale(0.000547645 0.00103202)"/>
+  </pattern>
+  <image id="screenShot" width="1826" height="968" preserveAspectRatio="none" href="/landing/dashboard.png" xlink:href="/landing/dashboard.png"/>
+</defs>
+<path d="M1448.63 1024H688.578C687.213 1024 686.106 1022.74 686.106 1021.19V1013.3C686.106 1011.75 687.213 1010.5 688.578 1010.5H1448.63C1449.99 1010.5 1451.1 1011.75 1451.1 1013.3V1021.19C1451.1 1022.74 1449.99 1024 1448.63 1024Z" fill="#3F3359"/>
+<path d="M1185.95 995.062H1054.59L1058.88 925.585L1059.41 916.928L1180.47 919.339L1183.21 957.244L1185.95 995.062Z" fill="#7E6E9E"/>
+<path opacity="0.5" d="M1183.21 957.244C1112.98 950.164 1072.05 932.232 1058.88 925.585L1059.41 916.928L1180.47 919.339L1183.21 957.244Z" fill="#7E6E9E"/>
+<path d="M1205.55 996.992H1034.33C1034.33 990.067 1039.95 984.452 1046.87 984.452H1193.01C1199.94 984.452 1205.55 990.067 1205.55 996.992Z" fill="#473A5D"/>
+<path d="M1375.81 604.027V878.824H865.041V604.027C865.041 595.17 873.399 587.99 883.711 587.99H1357.14C1367.45 587.99 1375.81 595.17 1375.81 604.027Z" fill="#4C396B" fill-opacity="0.47"/>
+<rect x="882.269" y="604.828" width="478.246" height="253.784" fill="url(#screenPattern)"/>
+<path d="M1375.81 876.894V907.902C1375.81 918.214 1367.45 926.572 1357.14 926.572H883.711C873.399 926.572 865.041 918.213 865.041 907.902V876.894H1375.81Z" fill="#7E6E9E"/>
+<path d="M1120.67 912.104C1126.53 912.104 1131.28 907.353 1131.28 901.493C1131.28 895.633 1126.53 890.882 1120.67 890.882C1114.81 890.882 1110.06 895.633 1110.06 901.493C1110.06 907.353 1114.81 912.104 1120.67 912.104Z" fill="#CAB9E4" fill-opacity="0.47"/>
+<path opacity="0.3" d="M1360.38 605.552V857.887C1360.38 858.529 1359.86 859.051 1359.22 859.051H1082.36C1112.53 825.799 1142.82 786.327 1170.22 739.912C1198.73 691.63 1218.53 645.29 1232.46 604.389H1359.22C1359.86 604.389 1360.38 604.91 1360.38 605.552Z" fill="#7E6E9E"/>
+<path d="M1282.63 1020.58C1282.63 1021.67 1281.75 1022.55 1280.66 1022.55H965.023C963.933 1022.55 963.051 1021.67 963.051 1020.58V1011.93C963.051 1011.67 963.104 1011.42 963.21 1011.18C963.301 1010.98 963.427 1010.8 963.591 1010.64L981.764 992.649H1259.67L1280.83 1011.18L1281.67 1011.92C1281.83 1012.06 1281.97 1012.24 1282.07 1012.42C1282.19 1012.65 1282.26 1012.9 1282.28 1013.16L1282.63 1020.58Z" fill="#7E6E9E"/>
+<path d="M1004.43 999.884H984.21L986.103 996.99H1005.94L1004.43 999.884Z" fill="#7E6E9E"/>
+<path d="M1001.54 1004.23H981.317L983.21 1001.33H1003.05L1001.54 1004.23Z" fill="#7E6E9E"/>
+<path d="M998.644 1008.57H978.424L980.317 1005.67H1000.15L998.644 1008.57Z" fill="#7E6E9E"/>
+<path d="M1029.99 999.884H1009.77L1011.67 996.99H1031.5L1029.99 999.884Z" fill="#7E6E9E"/>
+<path d="M1027.1 1004.23H1006.88L1008.77 1001.33H1028.61L1027.1 1004.23Z" fill="#7E6E9E"/>
+<path d="M1024.21 1008.57H1003.99L1005.88 1005.67H1025.72L1024.21 1008.57Z" fill="#7E6E9E"/>
+<path d="M1055.56 999.884H1035.33L1037.23 996.99H1057.07L1055.56 999.884Z" fill="#7E6E9E"/>
+<path d="M1052.66 1004.23H1032.44L1034.34 1001.33H1054.17L1052.66 1004.23Z" fill="#7E6E9E"/>
+<path d="M1049.77 1008.57H1029.55L1031.44 1005.67H1051.28L1049.77 1008.57Z" fill="#7E6E9E"/>
+<path d="M1081.12 999.884H1060.9L1062.79 996.99H1082.63L1081.12 999.884Z" fill="#7E6E9E"/>
+<path d="M1078.23 1004.23H1058L1059.9 1001.33H1079.74L1078.23 1004.23Z" fill="#7E6E9E"/>
+<path d="M1075.33 1008.57H1055.11L1057 1005.67H1076.84L1075.33 1008.57Z" fill="#7E6E9E"/>
+<path d="M1104.73 999.884H1085.02L1086.86 996.99H1106.2L1104.73 999.884Z" fill="#7E6E9E"/>
+<path d="M1102.34 1004.23H1082.12L1084.01 1001.33H1103.85L1102.34 1004.23Z" fill="#7E6E9E"/>
+<path d="M1099.45 1008.57H1079.22L1081.12 1005.67H1100.96L1099.45 1008.57Z" fill="#7E6E9E"/>
+<path d="M1238.94 999.884H1259.16L1257.26 996.99H1237.43L1238.94 999.884Z" fill="#7E6E9E"/>
+<path d="M1241.83 1004.23H1262.05L1260.15 1001.33H1240.32L1241.83 1004.23Z" fill="#7E6E9E"/>
+<path d="M1244.72 1008.57H1264.94L1263.05 1005.67H1243.21L1244.72 1008.57Z" fill="#7E6E9E"/>
+<path d="M1211.44 999.884H1231.66L1229.77 996.99H1209.93L1211.44 999.884Z" fill="#7E6E9E"/>
+<path d="M1214.34 1004.23H1234.56L1232.67 1001.33H1212.83L1214.34 1004.23Z" fill="#7E6E9E"/>
+<path d="M1217.23 1008.57H1237.45L1235.56 1005.67H1215.72L1217.23 1008.57Z" fill="#7E6E9E"/>
+<path d="M1184.43 999.884H1204.65L1202.76 996.99H1182.92L1184.43 999.884Z" fill="#7E6E9E"/>
+<path d="M1187.33 1004.23H1207.55L1205.65 1001.33H1185.82L1187.33 1004.23Z" fill="#7E6E9E"/>
+<path d="M1190.22 1008.57H1210.44L1208.55 1005.67H1188.71L1190.22 1008.57Z" fill="#7E6E9E"/>
+<path d="M1158.39 999.884H1178.61L1176.72 996.99H1156.88L1158.39 999.884Z" fill="#7E6E9E"/>
+<path d="M1161.28 1004.23H1181.5L1179.61 1001.33H1159.77L1161.28 1004.23Z" fill="#7E6E9E"/>
+<path d="M1164.18 1008.57H1184.4L1182.5 1005.67H1162.67L1164.18 1008.57Z" fill="#7E6E9E"/>
+<path d="M1133.24 999.884H1153.05L1151.19 996.99H1131.76L1133.24 999.884Z" fill="#7E6E9E"/>
+<path d="M1135.72 1004.23H1155.94L1154.05 1001.33H1134.21L1135.72 1004.23Z" fill="#7E6E9E"/>
+<path d="M1138.61 1008.57H1158.84L1156.94 1005.67H1137.1L1138.61 1008.57Z" fill="#7E6E9E"/>
+<path d="M1128.28 999.714H1109.37L1110 996.99H1127.58L1128.28 999.714Z" fill="#7E6E9E"/>
+<path d="M1129.34 1003.88H1108.42L1109.18 1000.57H1128.49L1129.34 1003.88Z" fill="#7E6E9E"/>
+<path d="M1130.65 1009.05H1107.23L1108.17 1004.93H1129.6L1130.65 1009.05Z" fill="#7E6E9E"/>
+<path d="M1282.63 1020.58C1282.63 1021.67 1281.75 1022.55 1280.66 1022.55H965.023C963.933 1022.55 963.051 1021.67 963.051 1020.58V1011.93C963.051 1011.67 963.104 1011.42 963.21 1011.19L1282.07 1012.42C1282.19 1012.65 1282.26 1012.9 1282.28 1013.16L1282.63 1020.58Z" fill="#7E6E9E"/>
+<path d="M1372.14 1004.87C1372.05 1008.14 1370.68 1010.7 1370.45 1011.13C1368.18 1015.25 1364.3 1016.85 1359.76 1018.64C1358.28 1019.23 1352.12 1021.57 1342.89 1021.65C1340.13 1021.68 1332.12 1021.55 1322.34 1017.98C1314.24 1015.02 1308.9 1013.07 1306.14 1007.62C1304.36 1004.13 1303.36 998.618 1305.97 994.422C1306.14 994.149 1306.44 993.701 1307.02 993.153C1308.39 991.858 1311.35 989.99 1318 988.408C1321.55 987.565 1329.35 986.042 1341.38 987.239C1353.36 988.43 1359.74 991.343 1361.93 992.417C1369.42 996.079 1370.93 999.2 1371.45 1000.6C1372.01 1002.08 1372.18 1003.53 1372.14 1004.87Z" fill="#DDD6FE"/>
+<path opacity="0.5" d="M1372.14 1004.87C1372.05 1008.14 1370.68 1010.7 1370.45 1011.13C1368.18 1015.25 1364.3 1016.85 1359.76 1018.64C1358.28 1019.23 1352.12 1021.57 1342.89 1021.65C1340.13 1021.68 1332.12 1021.55 1322.34 1017.98C1314.24 1015.02 1308.9 1013.07 1306.14 1007.62C1304.36 1004.12 1303.36 998.617 1305.97 994.421C1306.14 994.149 1306.44 993.7 1307.02 993.152C1311.02 995.627 1314 998.091 1316.16 1000.1C1320.58 1004.22 1322.51 1007.33 1327.69 1009.96C1331.11 1011.7 1333.97 1012.21 1337.38 1012.8C1342.93 1013.75 1351.41 1015.21 1360.93 1011.63C1365.61 1009.86 1369.32 1007.34 1372.14 1004.87Z" fill="#DDD6FE"/>
+</svg>
+  </div>
+</main>
+
+<!-- Footer ---------------------------------------------------->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <ul class="site-footer__contact">
+      <li><a href="tel:+61470584535">0470 584 535</a></li>
+      <li><a href="mailto:admin@pravaro.com">admin@pravaro.com</a></li>
+    </ul>
+    <p class="site-footer__copy">&copy; <span id="footerYear"></span> Pravaro. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Contact dialog ------------------------------------------->
+<div class="contact" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactName">
+  <div class="contact__card">
+    <p class="contact__eyebrow">Your representative</p>
+    <h2 class="contact__name" id="contactName"></h2>
+    <p class="contact__role" id="contactRole"></p>
+    <ul class="contact__list" id="contactList"></ul>
+    <div class="contact__actions">
+      <button class="btn" type="button" id="saveContact">Save contact</button>
+      <button class="btn btn--ghost" type="button" id="closeContact">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ----------------------------------------------------------
+     EDIT ME — representative details used by the contact card
+     and by the downloaded .vcf file.
+     ---------------------------------------------------------- */
+  var CONTACT = {
+    name:    "Pravaro Representative",
+    role:    "Client Solutions, Pravaro",
+    org:     "Pravaro",
+    phone:   "0470 584 535",
+    email:   "admin@pravaro.com",
+    website: "https://pravaro.com"
+  };
+
+  /* Entrance animation ------------------------------------- */
+  requestAnimationFrame(function () {
+    document.body.classList.add("is-ready");
+  });
+
+  document.getElementById("footerYear").textContent = new Date().getFullYear();
+
+  /* Contact dialog ----------------------------------------- */
+  var modal   = document.getElementById("contactModal");
+  var openBtn = document.getElementById("contactBtn");
+  var closeBtn= document.getElementById("closeContact");
+  var saveBtn = document.getElementById("saveContact");
+  var lastFocused = null;
+
+  document.getElementById("contactName").textContent = CONTACT.name;
+  document.getElementById("contactRole").textContent = CONTACT.role;
+  document.getElementById("contactList").innerHTML =
+      '<li><a href="tel:' + CONTACT.phone.replace(/\\s/g, "") + '">' + CONTACT.phone + '</a></li>' +
+      '<li><a href="mailto:' + CONTACT.email + '">' + CONTACT.email + '</a></li>' +
+      '<li><a href="' + CONTACT.website + '" target="_blank" rel="noopener">' + CONTACT.website + '</a></li>';
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.classList.add("is-open");
+    closeBtn.focus();
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal() {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+    if (lastFocused) { lastFocused.focus(); }
+  }
+
+  openBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) { closeModal(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) { closeModal(); }
+  });
+
+  /* Save contact as a .vcf card ---------------------------- */
+  saveBtn.addEventListener("click", function () {
+    var vcf = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      "FN:" + CONTACT.name,
+      "ORG:" + CONTACT.org,
+      "TITLE:" + CONTACT.role,
+      "TEL;TYPE=CELL:" + CONTACT.phone,
+      "EMAIL;TYPE=WORK:" + CONTACT.email,
+      "URL:" + CONTACT.website,
+      "END:VCARD"
+    ].join("\\r\\n");
+
+    var blob = new Blob([vcf], { type: "text/vcard;charset=utf-8" });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement("a");
+    a.href = url;
+    a.download = CONTACT.name.replace(/\\s+/g, "-").toLowerCase() + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+})();
+</script>
+</body>
+</html>
+`;
+
+export async function GET() {
+  return new Response(html, {
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+    },
+  });
+}

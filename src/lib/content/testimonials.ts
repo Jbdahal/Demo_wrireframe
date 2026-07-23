@@ -34,14 +34,9 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const trustSignals = {
-  title: "Trusted by healthcare teams focused on better outcomes",
+  title: "Trusted by NDIS teams focused on better outcomes",
   intro:
     "Teams moving from fragmented tools to Pravaro consistently report smoother operations, less admin, and more time for care.",
-  stats: [
-    { value: "94%", label: "Shifts filled without gaps" },
-    { value: "3×", label: "Faster timesheet-to-payrun turnaround" },
-    { value: "<1 wk", label: "Typical time to operational go-live" },
-  ],
   switchTitle: "Why teams are making the switch",
   switchBody:
     "Teams were paying for complex software they rarely used, while still relying on manual workarounds. Pravaro balances simplicity and capability: the tools they need today, with a connected suite growing around them.",

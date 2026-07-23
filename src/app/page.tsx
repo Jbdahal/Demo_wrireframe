@@ -1,11 +1,19 @@
 import { PageHero } from "@/components/sections/PageHero";
-import { BrandPromise } from "@/components/sections/BrandPromise";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { ComingSoonTeaser } from "@/components/sections/ComingSoonTeaser";
 import { TrustSignals } from "@/components/sections/TrustSignals";
 import { CTASection } from "@/components/sections/CTASection";
 import { HeroVisual } from "@/components/visuals/HeroVisual";
 import { hero } from "@/lib/content";
+
+export const metadata = {
+  title: "Pravaro — Suite for healthcare heroes.",
+  description: hero.subheadline,
+  openGraph: {
+    title: "Pravaro — Suite for healthcare heroes.",
+    description: hero.subheadline,
+  },
+};
 
 export default function Home() {
   return (
@@ -17,7 +25,6 @@ export default function Home() {
         ctas={hero.ctas}
         visual={<HeroVisual />}
       />
-      <BrandPromise />
       <ProductShowcase />
       <ComingSoonTeaser />
       <TrustSignals />

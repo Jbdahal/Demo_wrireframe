@@ -1,20 +1,16 @@
 export const about = {
   eyebrow: "Our story",
-  headline: "Suite for healthcare heroes.",
+  headlinePrefix: "Built for NDIS",
+  headlineWords: ["Care Teams", "Schedulers", "Agencies", "Administrators"],
   subheadline:
-    "Pravaro is a growing platform of interconnected healthcare software, built on a simple belief: the people who work in healthcare deserve technology that works as hard as they do.",
+    "Pravaro is a growing platform of interconnected NDIS software, built on a simple belief: the people who deliver care deserve technology that works as hard as they do.",
   nameStory: {
     title: "The meaning behind Pravaro",
     paragraphs: [
       "The name Pravaro comes from the Sanskrit word Pravah, meaning flow, stream, or current. It's the idea of something that moves continuously, without friction, always reaching its destination.",
-      "In healthcare, that concept reflects what effective operations should look like: information flowing seamlessly between staff and coordinators, shifts filled without gaps, timesheets processed promptly, and care delivered without interruption.",
+      "In NDIS operations, that concept reflects what effective operations should look like: information flowing seamlessly between staff and coordinators, shifts filled without gaps, timesheets processed promptly, and care delivered without interruption.",
       "The name also echoes pravara, a Sanskrit term for distinguished, excellent, of the highest quality. That's the standard we hold our software to.",
     ],
-  },
-  heroConcept: {
-    title: "The healthcare hero",
-    description:
-      "The Pravaro mark shows a figure in flight: a superhero with a flowing cape and arms extended, moving with speed and purpose. It represents every healthcare worker, the support worker who arrives on time, the staff member who steps in when others can't, and the coordinator who keeps everything running behind the scenes.",
   },
   pillars: [
     {
@@ -35,5 +31,5 @@ export const about = {
     },
   ],
   mission:
-    "To build the operating platform healthcare teams deserve, one connected suite at a time.",
+    "To build the operating platform NDIS providers deserve, one connected suite at a time.",
 };

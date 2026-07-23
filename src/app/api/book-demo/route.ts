@@ -1,8 +1,50 @@
 import nodemailer from "nodemailer";
 
-const DEMO_NOTIFY_EMAIL = "jbdahal13@gmail.com";
+const DEMO_NOTIFY_EMAIL = "admin@pravaro.com";
+
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const RATE_LIMIT_SWEEP_THRESHOLD = 1000;
+
+const requestLog = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+
+  if (requestLog.size > RATE_LIMIT_SWEEP_THRESHOLD) {
+    for (const [key, entry] of requestLog) {
+      if (now > entry.resetAt) requestLog.delete(key);
+    }
+  }
+
+  const entry = requestLog.get(ip);
+  if (!entry || now > entry.resetAt) {
+    requestLog.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) return true;
+
+  entry.count += 1;
+  return false;
+}
+
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) return forwardedFor.split(",")[0].trim();
+  return request.headers.get("x-real-ip") ?? "unknown";
+}
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+
+  if (isRateLimited(ip)) {
+    return Response.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429 }
+    );
+  }
+
   const body = await request.json();
   const { name, email, organisation, message } = body as {
     name?: string;

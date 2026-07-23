@@ -1,10 +1,14 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { Calendar, ClipboardCheck, ShieldCheck, Smartphone } from "lucide-react";
 import { rosterProduct } from "@/lib/content";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { ScreenshotFrame } from "@/components/ui/ScreenshotFrame";
+import { FeatureBlock } from "@/components/features/FeatureBlock";
+import { RosteringAnimation } from "@/components/features/animations/RosteringAnimation";
+import { ComplianceAnimation } from "@/components/features/animations/ComplianceAnimation";
 
 const highlights = [
   { icon: Calendar, label: "Shift management" },
@@ -12,6 +16,15 @@ const highlights = [
   { icon: ClipboardCheck, label: "SCHADS-aware payrun" },
   { icon: Smartphone, label: "Staff mobile app" },
 ];
+
+const featuredModuleAnimations: Record<string, ReactNode> = {
+  "roster-hub": <RosteringAnimation />,
+  "compliance-monitoring": <ComplianceAnimation />,
+};
+
+const featuredModules = rosterProduct.features.filter(
+  (feature) => feature.id === "roster-hub" || feature.id === "compliance-monitoring"
+);
 
 function DeviceMockup() {
   const [primaryScreenshot] = rosterProduct.screenshots;
@@ -72,16 +85,31 @@ export function ProductShowcase() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
-              <Button href="/products/roster" variant="primary">
-                Explore Roster &amp; Scheduling
-              </Button>
-            </div>
           </FadeIn>
           <FadeIn delay={0.15}>
             <DeviceMockup />
           </FadeIn>
         </div>
+
+        <div className="mt-20 space-y-20 md:mt-28 md:space-y-28">
+          {featuredModules.map((module, i) => (
+            <FeatureBlock
+              key={module.id}
+              number={module.number}
+              title={module.title}
+              description={module.description}
+              subFeatures={module.subFeatures}
+              animation={featuredModuleAnimations[module.id]}
+              reversed={i % 2 === 1}
+            />
+          ))}
+        </div>
+
+        <FadeIn delay={0.1} className="mt-16 flex justify-center">
+          <Button href="/products/roster" variant="primary">
+            Explore Roster &amp; Scheduling
+          </Button>
+        </FadeIn>
       </div>
     </section>
   );

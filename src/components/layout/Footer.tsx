@@ -16,7 +16,14 @@ export function Footer() {
               className="h-8 w-auto object-contain brightness-0 invert"
             />
           </Link>
-          <p className="font-body text-sm italic text-white/70">{footer.tagline}</p>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
+            <a href={footer.contact.phoneHref} className="transition-colors hover:text-primary">
+              {footer.contact.phone}
+            </a>
+            <a href={footer.contact.emailHref} className="transition-colors hover:text-primary">
+              {footer.contact.email}
+            </a>
+          </div>
         </div>
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -28,12 +35,23 @@ export function Footer() {
               <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-white/60 transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-white/60 transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

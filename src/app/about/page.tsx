@@ -6,6 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { AttributeCard } from "@/components/ui/AttributeCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { RotatingWord } from "@/components/ui/RotatingWord";
 import { brandAttributes } from "@/components/sections/BrandPromise";
 
 export const metadata = {
@@ -18,7 +19,13 @@ export default function AboutPage() {
     <main>
       <PageHero
         eyebrow={about.eyebrow}
-        headline={about.headline}
+        headline={
+          <>
+            {about.headlinePrefix}
+            <br />
+            <RotatingWord words={about.headlineWords} />
+          </>
+        }
         subheadline={about.subheadline}
         size="compact"
       />
@@ -35,21 +42,6 @@ export default function AboutPage() {
               </FadeIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-soft/40 py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <FadeIn>
-            <SectionHeader
-              title={about.heroConcept.title}
-              align="center"
-              className="mx-auto mb-6"
-            />
-            <p className="font-body text-lg leading-relaxed text-muted">
-              {about.heroConcept.description}
-            </p>
-          </FadeIn>
         </div>
       </section>
 

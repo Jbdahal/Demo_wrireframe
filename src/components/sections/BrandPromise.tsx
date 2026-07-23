@@ -44,7 +44,7 @@ export function BrandPromise() {
         <FadeIn>
           <SectionHeader
             eyebrow="What Pravaro stands for"
-            title="Suite for healthcare heroes."
+            title="Built for NDIS providers."
             align="center"
             className="mx-auto mb-16 md:mb-20"
           />

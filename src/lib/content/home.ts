@@ -14,7 +14,7 @@ export const hero: {
   eyebrow: "Suite for healthcare heroes.",
   headline: "Suite for healthcare heroes.",
   subheadline:
-    "Pravaro brings together the tools care teams, schedulers, agencies, and administrators need to run healthcare operations. Roster & Scheduling is live today, with more products on the way.",
+    "Pravaro brings together the tools care teams, schedulers, agencies, and administrators need to run NDIS operations. Roster & Scheduling is live today, with more products on the way.",
   ctas: [
     { label: "Explore the Suite", href: "/products", variant: "light" },
     {

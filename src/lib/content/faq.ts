@@ -1,8 +1,8 @@
 export const faq = [
   {
-    question: "Is Pravaro built for a specific part of healthcare, or is it a general platform?",
+    question: "Is Pravaro built for a specific part of the NDIS sector, or is it a general platform?",
     answer:
-      "Pravaro was built specifically for healthcare operations. Every feature reflects how care teams, schedulers, agencies, and administrators actually work, starting with the Roster & Scheduling platform.",
+      "Pravaro was built specifically for NDIS operations. Every feature reflects how care teams, schedulers, agencies, and administrators actually work, starting with the Roster & Scheduling platform.",
   },
   {
     question: "How long does it take to get set up on Pravaro?",

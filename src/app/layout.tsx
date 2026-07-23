@@ -18,13 +18,13 @@ const sourceSans = Source_Sans_3({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pravaro.com.au"),
-  title: "Pravaro — Suite for healthcare heroes.",
+  title: "Pravaro — NDIS operations platform",
   description:
-    "Pravaro is a software suite built for healthcare. It brings together the tools care teams, schedulers, agencies, and administrators need to run day-to-day operations without the usual admin headaches.",
+    "Pravaro is a software suite built for NDIS providers. It brings together the tools care teams, schedulers, agencies, and administrators need to run day-to-day NDIS operations without the usual admin headaches.",
   openGraph: {
-    title: "Pravaro — Suite for healthcare heroes.",
+    title: "Pravaro — NDIS operations platform",
     description:
-      "A growing suite of healthcare software, starting with the Roster & Scheduling platform, live today.",
+      "A growing suite of software for NDIS providers, starting with the Roster & Scheduling platform, live today.",
     images: ["/brand/logo-wordmark.png"],
     locale: "en_AU",
     type: "website",

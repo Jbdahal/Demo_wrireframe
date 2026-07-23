@@ -16,19 +16,6 @@ export function TrustSignals() {
           />
         </FadeIn>
 
-        <FadeIn delay={0.05}>
-          <div className="mb-14 grid grid-cols-3 gap-6 rounded-2xl border border-soft-alt bg-soft/40 p-8 text-center">
-            {trustSignals.stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="text-2xl font-bold text-darkest md:text-4xl">{stat.value}</p>
-                <p className="font-body mt-1 text-xs leading-snug text-muted md:text-sm">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-
         <div className="grid gap-8 md:grid-cols-3">
           {testimonials.map((q, i) => (
             <FadeIn key={q.attribution} delay={i * 0.1}>

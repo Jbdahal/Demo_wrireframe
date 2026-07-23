@@ -154,7 +154,7 @@ These are intentionally stubbed pending real infrastructure — flagged here so 
 - **Contact form** (`components/sections/ContactForm.tsx`) posts to `/api/book-demo`, but that route needs the SMTP env vars above configured — without them, submissions fail. The destination email is also hardcoded rather than user-configurable.
 - **"Notify me" capture** (`components/ui/ComingSoonCard.tsx`) is still client-side only — no submission target yet.
 - `/resources` is a stub (FAQ only) — no blog/docs yet.
-- Legal pages (Privacy Policy, Terms of Service) are placeholder links (`#`) in the footer.
+- Legal pages (Privacy Policy, Terms of Service) link to static PDFs in `public/legal/` rather than dedicated routes.
 
 ## Deployment
 

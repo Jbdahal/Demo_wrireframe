@@ -8,7 +8,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 export const metadata = {
   title: "Products — Pravaro Suite",
   description:
-    "Explore the Pravaro Suite: Roster & Scheduling, live today, with Marketplace and more connected healthcare products on the way.",
+    "Explore the Pravaro Suite: Roster & Scheduling, live today, with Marketplace and more connected NDIS products on the way.",
 };
 
 export default function ProductsPage() {
@@ -17,7 +17,7 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Products"
         headline="The Pravaro Suite"
-        subheadline="A growing platform of healthcare software. Roster & Scheduling is live today, with Marketplace and more products on the way."
+        subheadline="A growing platform of NDIS software. Roster & Scheduling is live today, with Marketplace and more products on the way."
         size="compact"
       />
       <section className="bg-white py-20 md:py-28">

@@ -36,10 +36,16 @@ export const primaryCta = { label: "Book a Demo", href: "/contact" };
 export interface FooterLink {
   label: string;
   href: string;
+  external?: boolean;
 }
 
 export const footer = {
-  tagline: "Suite for Healthcare Heroes.",
+  contact: {
+    phone: "0470 584 535",
+    phoneHref: "tel:+61470584535",
+    email: "admin@pravaro.com",
+    emailHref: "mailto:admin@pravaro.com",
+  },
   columns: [
     {
       title: "Products",
@@ -68,8 +74,8 @@ export const footer = {
     {
       title: "Legal",
       links: [
-        { label: "Privacy Policy", href: "#" },
-        { label: "Terms of Service", href: "#" },
+        { label: "Privacy Policy", href: "/legal/pravaro-privacy-policy.pdf", external: true },
+        { label: "Terms of Service", href: "/legal/pravaro-terms-of-service.pdf", external: true },
       ] as FooterLink[],
     },
   ],
@@ -77,7 +83,7 @@ export const footer = {
 
 export const siteMeta = {
   name: "Pravaro",
-  tagline: "Suite for Healthcare Heroes.",
+  tagline: "The connected suite for NDIS teams.",
   description:
-    "Pravaro is a software suite built for healthcare. It brings together the tools care teams, schedulers, agencies, and administrators need to run day-to-day operations without the usual admin headaches.",
+    "Pravaro is a software suite built for NDIS teams. It brings together the tools care teams, schedulers, agencies, and administrators need to run day-to-day NDIS operations without the usual admin headaches.",
 };

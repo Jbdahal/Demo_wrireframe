@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
+const DEFAULT_ERROR = "Something went wrong sending your request. Please try again.";
+
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "submitted" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR);
 
   if (status === "submitted") {
     return (
@@ -38,9 +41,15 @@ export function ContactForm() {
             }),
           });
 
-          if (!res.ok) throw new Error("Request failed");
+          if (!res.ok) {
+            const body = await res.json().catch(() => null);
+            setErrorMessage(body?.error || DEFAULT_ERROR);
+            setStatus("error");
+            return;
+          }
           setStatus("submitted");
         } catch {
+          setErrorMessage(DEFAULT_ERROR);
           setStatus("error");
         }
       }}
@@ -63,9 +72,7 @@ export function ContactForm() {
         />
       </div>
       {status === "error" && (
-        <p className="font-body text-sm text-red-600">
-          Something went wrong sending your request. Please try again.
-        </p>
+        <p className="font-body text-sm text-red-600">{errorMessage}</p>
       )}
       <button
         type="submit"

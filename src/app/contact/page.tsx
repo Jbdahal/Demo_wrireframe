@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 
 export const metadata = {
   title: "Book a Demo — Pravaro Suite",
-  description: "See how Pravaro brings flow to your healthcare operations.",
+  description: "See how Pravaro brings flow to your NDIS operations.",
 };
 
 export default function ContactPage() {
