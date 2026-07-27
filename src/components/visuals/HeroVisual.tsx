@@ -85,7 +85,7 @@ export function HeroVisual() {
       <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
         <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/25 via-transparent to-strong/25 blur-3xl" />
         <svg
-          viewBox="-20 0 240 260"
+          viewBox="-20 -20 240 280"
           className="relative h-auto w-full"
           role="img"
           aria-label="A heroic figure in flight, cape trailing behind"
@@ -108,7 +108,7 @@ export function HeroVisual() {
         className="relative"
       >
         <motion.svg
-          viewBox="-20 0 240 260"
+          viewBox="-20 -20 240 280"
           className="h-auto w-full"
           role="img"
           aria-label="A heroic figure in flight, cape trailing behind"

@@ -451,7 +451,7 @@ button{ font:inherit; color:inherit; }
   <div class="site-footer__inner">
     <ul class="site-footer__contact">
       <li><a href="tel:+61470584535">0470 584 535</a></li>
-      <li><a href="mailto:admin@pravaro.com">admin@pravaro.com</a></li>
+      <li><a href="mailto:info@pravaro.com">info@pravaro.com</a></li>
     </ul>
     <p class="site-footer__copy">&copy; <span id="footerYear"></span> Pravaro. All rights reserved.</p>
   </div>
@@ -480,11 +480,11 @@ button{ font:inherit; color:inherit; }
      and by the downloaded .vcf file.
      ---------------------------------------------------------- */
   var CONTACT = {
-    name:    "Pravaro Representative",
+    name:    "Jyoti Bhushan Dahal",
     role:    "Client Solutions, Pravaro",
     org:     "Pravaro",
     phone:   "0470 584 535",
-    email:   "admin@pravaro.com",
+    email:   "info@pravaro.com",
     website: "https://pravaro.com"
   };
 
