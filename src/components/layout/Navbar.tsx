@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { navLinks, primaryCta } from "@/lib/content";
+import { navLinks, primaryCta, secondaryCta } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -104,7 +104,13 @@ export function Navbar() {
               </Link>
             )
           )}
-          <Button href={primaryCta.href} variant="primary" className="ml-2 px-5 py-2 text-sm">
+          <Link
+            href={secondaryCta.href}
+            className="rounded-full px-4 py-2 text-sm font-medium text-darkest/80 transition-colors hover:text-strong"
+          >
+            {secondaryCta.label}
+          </Link>
+          <Button href={primaryCta.href} variant="primary" className="ml-1 px-5 py-2 text-sm">
             {primaryCta.label}
           </Button>
         </div>
@@ -185,6 +191,13 @@ export function Navbar() {
               </Link>
             )
           )}
+          <Link
+            href={secondaryCta.href}
+            className="border-b border-soft-alt py-4 text-lg font-medium text-darkest"
+            onClick={closeAll}
+          >
+            {secondaryCta.label}
+          </Link>
           <Button href={primaryCta.href} variant="primary" className="mt-4" onClick={closeAll}>
             {primaryCta.label}
           </Button>

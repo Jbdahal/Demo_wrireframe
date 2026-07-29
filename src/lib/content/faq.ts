@@ -27,7 +27,7 @@ export const faq = [
   {
     question: "Is Pravaro suitable for smaller teams, or built for large organisations?",
     answer:
-      "Pravaro serves teams at every stage of growth. Smaller teams get operational clarity from day one, and as you grow, the suite scales with you, including new products as they launch, without ever forcing a platform change.",
+      "Pravaro works for teams at every stage of growth. Smaller teams get operational clarity from day one, and as you grow, the suite scales with you, including new products as they launch, without ever forcing a platform change.",
   },
   {
     question: "What's next for the Pravaro Suite?",

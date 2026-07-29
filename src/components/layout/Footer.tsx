@@ -16,13 +16,22 @@ export function Footer() {
               className="h-8 w-auto object-contain brightness-0 invert"
             />
           </Link>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
+          <p className="mt-4 text-sm text-white/60">
+            {footer.contact.representative.name} · {footer.contact.representative.role}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
             <a href={footer.contact.phoneHref} className="transition-colors hover:text-primary">
               {footer.contact.phone}
             </a>
-            <a href={footer.contact.emailHref} className="transition-colors hover:text-primary">
-              {footer.contact.email}
-            </a>
+            {footer.contact.emails.map((email) => (
+              <a
+                key={email.href}
+                href={email.href}
+                className="transition-colors hover:text-primary"
+              >
+                {email.label}
+              </a>
+            ))}
           </div>
         </div>
 

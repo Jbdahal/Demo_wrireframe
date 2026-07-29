@@ -1,4 +1,4 @@
-import { testimonials, type Audience, type Testimonial } from "@/lib/content/testimonials";
+import type { Audience } from "@/lib/content/testimonials";
 
 export interface SolutionAudience {
   slug: string;
@@ -9,11 +9,6 @@ export interface SolutionAudience {
   painPoints: { title: string; description: string }[];
   howWeHelp: { title: string; description: string }[];
   relevantFeatures: { label: string; href: string }[];
-  testimonial: Testimonial;
-}
-
-function testimonialFor(audience: Audience): Testimonial {
-  return testimonials.find((t) => t.audience === audience)!;
 }
 
 export const solutions: Record<Audience, SolutionAudience> = {
@@ -58,7 +53,6 @@ export const solutions: Record<Audience, SolutionAudience> = {
       { label: "Staff App", href: "/products/roster#staff-app" },
       { label: "Roster Hub", href: "/products/roster#roster-hub" },
     ],
-    testimonial: testimonialFor("careTeams"),
   },
   schedulers: {
     slug: "schedulers",
@@ -100,7 +94,6 @@ export const solutions: Record<Audience, SolutionAudience> = {
       { label: "Roster Hub", href: "/products/roster#roster-hub" },
       { label: "Marketplace", href: "/products/marketplace" },
     ],
-    testimonial: testimonialFor("schedulers"),
   },
   agencies: {
     slug: "agencies",
@@ -141,7 +134,6 @@ export const solutions: Record<Audience, SolutionAudience> = {
       { label: "Marketplace", href: "/products/marketplace" },
       { label: "Audit Log", href: "/products/roster#audit-log" },
     ],
-    testimonial: testimonialFor("agencies"),
   },
   administrators: {
     slug: "administrators",
@@ -185,6 +177,5 @@ export const solutions: Record<Audience, SolutionAudience> = {
       { label: "Compliance & Monitoring", href: "/products/roster#compliance-monitoring" },
       { label: "Audit Log", href: "/products/roster#audit-log" },
     ],
-    testimonial: testimonialFor("administrators"),
   },
 };

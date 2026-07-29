@@ -1,4 +1,4 @@
-import { testimonials, trustSignals } from "@/lib/content";
+import { featuredTestimonial, trustSignals } from "@/lib/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -16,13 +16,9 @@ export function TrustSignals() {
           />
         </FadeIn>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {testimonials.map((q, i) => (
-            <FadeIn key={q.attribution} delay={i * 0.1}>
-              <TestimonialCard quote={q.quote} attribution={q.attribution} />
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn className="mx-auto max-w-2xl">
+          <TestimonialCard quote={featuredTestimonial.quote} attribution={featuredTestimonial.attribution} />
+        </FadeIn>
 
         <FadeIn delay={0.2} className="mx-auto mt-14 max-w-2xl text-center">
           <h3 className="text-xl font-bold text-darkest">{trustSignals.switchTitle}</h3>

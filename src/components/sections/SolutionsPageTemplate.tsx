@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import type { SolutionAudience } from "@/lib/content/solutions";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { CTASection } from "@/components/sections/CTASection";
 import { FadeIn } from "@/components/ui/FadeIn";
 
@@ -78,17 +77,6 @@ export function SolutionsPageTemplate({ solution }: { solution: SolutionAudience
                 </Link>
               ))}
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-6">
-          <FadeIn>
-            <TestimonialCard
-              quote={solution.testimonial.quote}
-              attribution={solution.testimonial.attribution}
-            />
           </FadeIn>
         </div>
       </section>

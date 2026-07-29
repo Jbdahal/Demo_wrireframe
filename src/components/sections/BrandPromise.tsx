@@ -7,12 +7,12 @@ export const brandAttributes = [
   {
     icon: Zap,
     title: "Flow Without Friction",
-    description: "Operations that feel effortless because the tools work seamlessly beneath them.",
+    description: "Operations that feel effortless because the tools underneath just work.",
   },
   {
     icon: Layers,
     title: "A Growing Suite",
-    description: "An evolving ecosystem of tools, unified and coherent, built to expand as new products join.",
+    description: "New products join over time, and they all work together from day one.",
   },
   {
     icon: Compass,

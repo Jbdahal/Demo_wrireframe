@@ -32,6 +32,7 @@ export const navLinks: NavLink[] = [
 ];
 
 export const primaryCta = { label: "Book a Demo", href: "/contact" };
+export const secondaryCta = { label: "Contact Us", href: "/contact#details" };
 
 export interface FooterLink {
   label: string;
@@ -41,10 +42,16 @@ export interface FooterLink {
 
 export const footer = {
   contact: {
+    representative: {
+      name: "Jyoti Bhushan Dahal",
+      role: "Client Solutions, Pravaro",
+    },
     phone: "0470 584 535",
     phoneHref: "tel:+61470584535",
-    email: "admin@pravaro.com",
-    emailHref: "mailto:admin@pravaro.com",
+    emails: [
+      { label: "info@pravaro.com", href: "mailto:info@pravaro.com" },
+      { label: "jyotibhushan@pravaro.com", href: "mailto:jyotibhushan@pravaro.com" },
+    ],
   },
   columns: [
     {
