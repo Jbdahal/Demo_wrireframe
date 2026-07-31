@@ -16,10 +16,7 @@ export function Footer() {
               className="h-8 w-auto object-contain brightness-0 invert"
             />
           </Link>
-          <p className="mt-4 text-sm text-white/60">
-            {footer.contact.representative.name} · {footer.contact.representative.role}
-          </p>
-          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
             <a href={footer.contact.phoneHref} className="transition-colors hover:text-primary">
               {footer.contact.phone}
             </a>

@@ -20,12 +20,9 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-5xl gap-12 px-6 lg:grid-cols-[1fr_1.2fr]">
           <div id="details" className="scroll-mt-24">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Your representative
+              Get in touch
             </p>
-            <h2 className="mt-2 text-xl font-bold text-darkest">
-              {footer.contact.representative.name}
-            </h2>
-            <p className="mt-1 text-sm text-muted">{footer.contact.representative.role}</p>
+            <h2 className="mt-2 text-xl font-bold text-darkest">Contact Pravaro</h2>
             <div className="mt-6 space-y-2 text-sm">
               <a
                 href={footer.contact.phoneHref}
