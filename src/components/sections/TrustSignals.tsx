@@ -1,4 +1,4 @@
-import { featuredTestimonial, trustSignals } from "@/lib/content";
+import { featuredTestimonial, secondaryTestimonial, thirdTestimonial, trustSignals } from "@/lib/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -16,8 +16,10 @@ export function TrustSignals() {
           />
         </FadeIn>
 
-        <FadeIn className="mx-auto max-w-2xl">
+        <FadeIn className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           <TestimonialCard quote={featuredTestimonial.quote} attribution={featuredTestimonial.attribution} />
+          <TestimonialCard quote={secondaryTestimonial.quote} attribution={secondaryTestimonial.attribution} />
+          <TestimonialCard quote={thirdTestimonial.quote} attribution={thirdTestimonial.attribution} />
         </FadeIn>
 
         <FadeIn delay={0.2} className="mx-auto mt-14 max-w-2xl text-center">
