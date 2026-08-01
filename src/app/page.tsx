@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/sections/PageHero";
-import { ProductShowcase } from "@/components/sections/ProductShowcase";
+import { FeatureShowcase } from "@/components/sections/FeatureShowcase";
 import { ComingSoonTeaser } from "@/components/sections/ComingSoonTeaser";
 import { TrustSignals } from "@/components/sections/TrustSignals";
 import { CTASection } from "@/components/sections/CTASection";
@@ -25,12 +25,12 @@ export default function Home() {
         ctas={hero.ctas}
         visual={<HeroVisual />}
       />
-      <ProductShowcase />
+      <FeatureShowcase />
       <ComingSoonTeaser />
       <TrustSignals />
       <CTASection
         title="Ready to see Pravaro in action?"
-        description="Book a demo and see how the Roster & Scheduling platform brings flow to your operations."
+        description="Book a demo and see how the Roster & Scheduling feature brings flow to your operations."
         ctaLabel="Book a Demo"
         ctaHref="/contact"
       />

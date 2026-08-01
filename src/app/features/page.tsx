@@ -1,23 +1,23 @@
 import { CalendarRange, Store } from "lucide-react";
-import { rosterProduct, marketplaceProduct, productPlaceholders } from "@/lib/content";
+import { rosterFeature, marketplaceFeature, featurePlaceholders } from "@/lib/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata = {
-  title: "Products — Pravaro Suite",
+  title: "Features — Pravaro Suite",
   description:
-    "Explore the Pravaro Suite: Roster & Scheduling, live today, with Marketplace and more connected NDIS products on the way.",
+    "Explore the Pravaro Suite: Roster & Scheduling, live today, with Marketplace and more connected NDIS features on the way.",
 };
 
-export default function ProductsPage() {
+export default function FeaturesPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Products"
+        eyebrow="Features"
         headline="The Pravaro Suite"
-        subheadline="A growing platform of NDIS software. Roster & Scheduling is live today, with Marketplace and more products on the way."
+        subheadline="A growing platform of NDIS software. Roster & Scheduling is live today, with Marketplace and more features on the way."
         size="compact"
       />
       <section className="bg-white py-20 md:py-28">
@@ -26,24 +26,24 @@ export default function ProductsPage() {
             <FadeIn>
               <FeatureCard
                 icon={CalendarRange}
-                title={rosterProduct.name}
-                description={rosterProduct.subheadline}
-                href="/products/roster"
+                title={rosterFeature.name}
+                description={rosterFeature.subheadline}
+                href="/features/roster"
                 status="live"
               />
             </FadeIn>
             <FadeIn delay={0.08}>
               <FeatureCard
                 icon={Store}
-                title={marketplaceProduct.name}
-                description={marketplaceProduct.subheadline}
-                href="/products/marketplace"
+                title={marketplaceFeature.name}
+                description={marketplaceFeature.subheadline}
+                href="/features/marketplace"
                 status="soon"
               />
             </FadeIn>
-            {productPlaceholders.map((product, i) => (
-              <FadeIn key={product.slug} delay={(i + 2) * 0.08} className="h-full">
-                <ComingSoonCard title={product.name} description={product.description} />
+            {featurePlaceholders.map((feature, i) => (
+              <FadeIn key={feature.slug} delay={(i + 2) * 0.08} className="h-full">
+                <ComingSoonCard title={feature.name} description={feature.description} />
               </FadeIn>
             ))}
           </div>

@@ -6,14 +6,14 @@ export interface RosterFeature {
   subFeatures: readonly string[];
 }
 
-export const rosterProduct = {
+export const rosterFeature = {
   slug: "roster",
   name: "Roster & Scheduling",
   status: "live" as const,
   eyebrow: "Now Live",
   headline: "Roster & Scheduling",
   subheadline:
-    "The first product in the Pravaro Suite. Everything your team needs to schedule shifts, manage staff, and keep payroll moving, without the admin overhead.",
+    "The first feature in the Pravaro Suite. Everything your team needs to schedule shifts, manage staff, and keep payroll moving, without the admin overhead.",
   screenshots: [
     {
       src: "/screenshots/dashboard.png",

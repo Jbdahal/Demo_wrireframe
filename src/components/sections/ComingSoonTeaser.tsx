@@ -1,10 +1,10 @@
-import { comingSoonTeaser, productPlaceholders } from "@/lib/content";
+import { comingSoonTeaser, featurePlaceholders } from "@/lib/content";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export function ComingSoonTeaser() {
-  if (productPlaceholders.length === 0) return null;
+  if (featurePlaceholders.length === 0) return null;
 
   return (
     <section id="coming-soon" className="bg-white py-20 md:py-28">
@@ -19,9 +19,9 @@ export function ComingSoonTeaser() {
           />
         </FadeIn>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {productPlaceholders.map((product, i) => (
-            <FadeIn key={product.slug} delay={i * 0.08} className="h-full">
-              <ComingSoonCard title={product.name} description={product.description} />
+          {featurePlaceholders.map((feature, i) => (
+            <FadeIn key={feature.slug} delay={i * 0.08} className="h-full">
+              <ComingSoonCard title={feature.name} description={feature.description} />
             </FadeIn>
           ))}
         </div>

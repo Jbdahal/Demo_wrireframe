@@ -2,7 +2,7 @@ export const faq = [
   {
     question: "Is Pravaro built for a specific part of the NDIS sector, or is it a general platform?",
     answer:
-      "Pravaro was built specifically for NDIS operations. Every feature reflects how care teams, schedulers, agencies, and administrators actually work, starting with the Roster & Scheduling platform.",
+      "Pravaro was built specifically for NDIS operations. Every feature reflects how care teams, schedulers, agencies, and administrators actually work, starting with the Roster & Scheduling feature.",
   },
   {
     question: "How long does it take to get set up on Pravaro?",
@@ -27,11 +27,11 @@ export const faq = [
   {
     question: "Is Pravaro suitable for smaller teams, or built for large organisations?",
     answer:
-      "Pravaro works for teams at every stage of growth. Smaller teams get operational clarity from day one, and as you grow, the suite scales with you, including new products as they launch, without ever forcing a platform change.",
+      "Pravaro works for teams at every stage of growth. Smaller teams get operational clarity from day one, and as you grow, the suite scales with you, including new features as they launch, without ever forcing a platform change.",
   },
   {
     question: "What's next for the Pravaro Suite?",
     answer:
-      "Roster & Scheduling is live today, with more products in development. Each new one joins the suite without disrupting what you already rely on.",
+      "Roster & Scheduling is live today, with more features in development. Each new one joins the suite without disrupting what you already rely on.",
   },
 ];

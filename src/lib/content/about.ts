@@ -23,7 +23,7 @@ export const about = {
     },
     {
       title: "One suite, growing",
-      text: "Roster & Scheduling is live today. More connected products are on the way, without ever requiring a platform change.",
+      text: "Roster & Scheduling is live today. More connected features are on the way, without ever requiring a platform change.",
     },
     {
       title: "Built for the people doing the work",

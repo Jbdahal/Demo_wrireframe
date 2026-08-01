@@ -12,10 +12,10 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   {
-    label: "Products",
+    label: "Features",
     items: [
-      { label: "Roster & Scheduling", href: "/products/roster", badge: "live" },
-      { label: "Marketplace", href: "/products/marketplace", badge: "soon" },
+      { label: "Roster & Scheduling", href: "/features/roster", badge: "live" },
+      { label: "Marketplace", href: "/features/marketplace", badge: "soon" },
     ],
   },
   {
@@ -48,10 +48,10 @@ export const footer = {
   },
   columns: [
     {
-      title: "Products",
+      title: "Features",
       links: [
-        { label: "Roster & Scheduling", href: "/products/roster" },
-        { label: "Marketplace", href: "/products/marketplace" },
+        { label: "Roster & Scheduling", href: "/features/roster" },
+        { label: "Marketplace", href: "/features/marketplace" },
       ] as FooterLink[],
     },
     {

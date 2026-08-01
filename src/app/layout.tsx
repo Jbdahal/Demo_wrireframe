@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pravaro — NDIS operations platform",
     description:
-      "A growing suite of software for NDIS providers, starting with the Roster & Scheduling platform, live today.",
+      "A growing suite of software for NDIS providers, starting with the Roster & Scheduling feature, live today.",
     images: ["/brand/logo-wordmark.png"],
     locale: "en_AU",
     type: "website",

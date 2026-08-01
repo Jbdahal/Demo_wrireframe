@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { rosterProduct } from "@/lib/content";
+import { rosterFeature } from "@/lib/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
@@ -22,7 +22,7 @@ import { AIAnimation } from "@/components/features/animations/AIAnimation";
 
 export const metadata = {
   title: "Roster & Scheduling — Pravaro Suite",
-  description: rosterProduct.subheadline,
+  description: rosterFeature.subheadline,
 };
 
 const animations: Record<string, ReactNode> = {
@@ -48,8 +48,8 @@ export default function RosterProductPage() {
     <main>
       <PageHero
         eyebrow={<Badge variant="live">Now Live</Badge>}
-        headline={rosterProduct.headline}
-        subheadline={rosterProduct.subheadline}
+        headline={rosterFeature.headline}
+        subheadline={rosterFeature.subheadline}
         ctas={[{ label: "Book a Demo", href: "/contact", variant: "light" }]}
         size="compact"
       />
@@ -59,13 +59,13 @@ export default function RosterProductPage() {
           <FadeIn>
             <SectionHeader
               eyebrow="See it in action"
-              title="Roster & Scheduling platform"
+              title="Roster & Scheduling feature"
               align="center"
               className="mx-auto mb-12"
             />
           </FadeIn>
           <FadeIn>
-            <Carousel slides={rosterProduct.screenshots} />
+            <Carousel slides={rosterFeature.screenshots} />
           </FadeIn>
         </div>
       </section>
@@ -81,7 +81,7 @@ export default function RosterProductPage() {
             />
           </FadeIn>
           <div className="space-y-20 md:space-y-28">
-            {rosterProduct.features.map((feature, index) => (
+            {rosterFeature.features.map((feature, index) => (
               <div key={feature.id} id={feature.id} className="scroll-mt-24">
                 <FeatureBlock
                   number={feature.number}
@@ -108,10 +108,10 @@ export default function RosterProductPage() {
             />
           </FadeIn>
           <div className="space-y-20">
-            {rosterProduct.bonusFeatures.map((feature, index) => (
+            {rosterFeature.bonusFeatures.map((feature, index) => (
               <div key={feature.id} id={feature.id} className="scroll-mt-24">
                 <FeatureBlock
-                  number={rosterProduct.features.length + index + 1}
+                  number={rosterFeature.features.length + index + 1}
                   title={feature.title}
                   description={feature.description}
                   subFeatures={[]}

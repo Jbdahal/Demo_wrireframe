@@ -14,9 +14,9 @@ export const hero: {
   eyebrow: "Suite for healthcare heroes.",
   headline: "Suite for healthcare heroes.",
   subheadline:
-    "Pravaro brings together the tools care teams, schedulers, agencies, and administrators need to run NDIS operations. Roster & Scheduling is live today, with more products on the way.",
+    "Pravaro brings together the tools care teams, schedulers, agencies, and administrators need to run NDIS operations. Roster & Scheduling is live today, with more features on the way.",
   ctas: [
-    { label: "Explore the Suite", href: "/products", variant: "light" },
+    { label: "Explore the Suite", href: "/features", variant: "light" },
     {
       label: "Book a Demo",
       href: "/contact",
@@ -28,7 +28,7 @@ export const hero: {
 
 export const comingSoonTeaser = {
   eyebrow: "What's Next",
-  title: "More platforms are on the way.",
+  title: "More features are on the way.",
   description:
-    "Pravaro keeps growing. Every new product plugs into the suite you already rely on, so nothing you use today gets disrupted.",
+    "Pravaro keeps growing. Every new feature plugs into the suite you already rely on, so nothing you use today gets disrupted.",
 };

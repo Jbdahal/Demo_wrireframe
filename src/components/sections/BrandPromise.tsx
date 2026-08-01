@@ -12,7 +12,7 @@ export const brandAttributes = [
   {
     icon: Layers,
     title: "A Growing Suite",
-    description: "New products join over time, and they all work together from day one.",
+    description: "New features join over time, and they all work together from day one.",
   },
   {
     icon: Compass,

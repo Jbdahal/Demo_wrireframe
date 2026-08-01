@@ -1,5 +1,5 @@
 import { ClipboardCheck, Handshake, Send, Users } from "lucide-react";
-import { marketplaceProduct } from "@/lib/content";
+import { marketplaceFeature } from "@/lib/content";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
@@ -9,7 +9,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata = {
   title: "Marketplace — Pravaro Suite",
-  description: marketplaceProduct.subheadline,
+  description: marketplaceFeature.subheadline,
 };
 
 const icons = {
@@ -24,8 +24,8 @@ export default function MarketplaceProductPage() {
     <main>
       <PageHero
         eyebrow={<Badge variant="outline">Coming Soon</Badge>}
-        headline={marketplaceProduct.headline}
-        subheadline={marketplaceProduct.subheadline}
+        headline={marketplaceFeature.headline}
+        subheadline={marketplaceFeature.subheadline}
         ctas={[{ label: "Notify Me", href: "/contact", variant: "light" }]}
         size="compact"
       />
@@ -41,7 +41,7 @@ export default function MarketplaceProductPage() {
             />
           </FadeIn>
           <div className="grid gap-6 sm:grid-cols-2">
-            {marketplaceProduct.features.map((feature, i) => (
+            {marketplaceFeature.features.map((feature, i) => (
               <div key={feature.id} id={feature.id} className="scroll-mt-24 h-full">
                 <FadeIn delay={i * 0.08} className="h-full">
                   <FeatureCard

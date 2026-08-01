@@ -4,7 +4,7 @@ export interface MarketplaceFeature {
   description: string;
 }
 
-export const marketplaceProduct = {
+export const marketplaceFeature = {
   slug: "marketplace",
   name: "Marketplace",
   status: "soon" as const,

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { Calendar, ClipboardCheck, ShieldCheck, Smartphone } from "lucide-react";
-import { rosterProduct } from "@/lib/content";
+import { rosterFeature } from "@/lib/content";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -22,12 +22,12 @@ const featuredModuleAnimations: Record<string, ReactNode> = {
   "compliance-monitoring": <ComplianceAnimation />,
 };
 
-const featuredModules = rosterProduct.features.filter(
+const featuredModules = rosterFeature.features.filter(
   (feature) => feature.id === "roster-hub" || feature.id === "compliance-monitoring"
 );
 
 function DeviceMockup() {
-  const [primaryScreenshot] = rosterProduct.screenshots;
+  const [primaryScreenshot] = rosterFeature.screenshots;
 
   return (
     <div className="relative mx-auto w-full max-w-lg">
@@ -58,9 +58,9 @@ function DeviceMockup() {
   );
 }
 
-export function ProductShowcase() {
+export function FeatureShowcase() {
   return (
-    <section id="live-product" className="bg-soft/40 py-20 md:py-28">
+    <section id="live-feature" className="bg-soft/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <FadeIn>
@@ -68,12 +68,11 @@ export function ProductShowcase() {
               Now Live
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight text-darkest md:text-4xl">
-              Roster &amp; Scheduling Platform
+              Roster &amp; Scheduling Feature
             </h2>
             <p className="font-body mt-4 max-w-xl text-lg leading-relaxed text-muted">
-              The first product in the Pravaro Suite. Shift management, compliance
-              monitoring, SCHADS-aware payrun, and a staff mobile app, all in one connected
-              platform.
+              The first feature in the Pravaro Suite. Shift management, compliance
+              monitoring, SCHADS-aware payrun, and a staff mobile app.
             </p>
             <ul className="mt-8 grid grid-cols-2 gap-4">
               {highlights.map(({ icon: Icon, label }) => (
@@ -106,7 +105,7 @@ export function ProductShowcase() {
         </div>
 
         <FadeIn delay={0.1} className="mt-16 flex justify-center">
-          <Button href="/products/roster" variant="primary">
+          <Button href="/features/roster" variant="primary">
             Explore Roster &amp; Scheduling
           </Button>
         </FadeIn>

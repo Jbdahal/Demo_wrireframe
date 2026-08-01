@@ -50,8 +50,8 @@ export const solutions: Record<Audience, SolutionAudience> = {
       },
     ],
     relevantFeatures: [
-      { label: "Staff App", href: "/products/roster#staff-app" },
-      { label: "Roster Hub", href: "/products/roster#roster-hub" },
+      { label: "Staff App", href: "/features/roster#staff-app" },
+      { label: "Roster Hub", href: "/features/roster#roster-hub" },
     ],
   },
   schedulers: {
@@ -91,8 +91,8 @@ export const solutions: Record<Audience, SolutionAudience> = {
       },
     ],
     relevantFeatures: [
-      { label: "Roster Hub", href: "/products/roster#roster-hub" },
-      { label: "Marketplace", href: "/products/marketplace" },
+      { label: "Roster Hub", href: "/features/roster#roster-hub" },
+      { label: "Marketplace", href: "/features/marketplace" },
     ],
   },
   agencies: {
@@ -131,8 +131,8 @@ export const solutions: Record<Audience, SolutionAudience> = {
       },
     ],
     relevantFeatures: [
-      { label: "Marketplace", href: "/products/marketplace" },
-      { label: "Audit Log", href: "/products/roster#audit-log" },
+      { label: "Marketplace", href: "/features/marketplace" },
+      { label: "Audit Log", href: "/features/roster#audit-log" },
     ],
   },
   administrators: {
@@ -173,9 +173,9 @@ export const solutions: Record<Audience, SolutionAudience> = {
       },
     ],
     relevantFeatures: [
-      { label: "Payrun Management", href: "/products/roster#payrun-management" },
-      { label: "Compliance & Monitoring", href: "/products/roster#compliance-monitoring" },
-      { label: "Audit Log", href: "/products/roster#audit-log" },
+      { label: "Payrun Management", href: "/features/roster#payrun-management" },
+      { label: "Compliance & Monitoring", href: "/features/roster#compliance-monitoring" },
+      { label: "Audit Log", href: "/features/roster#audit-log" },
     ],
   },
 };
